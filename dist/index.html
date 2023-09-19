@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webpack Starter Kit</title>
 </head>
+
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <main class="container">
+    <section id="loginArea" class="login-area">
+      <form action="" class="login-form">
+        <div>
+          <label for="username">Username: </label>
+          <input name="username" id="username" value="enter username" />
+        </div>
+        <div>
+          <label for="pass">Username: </label>
+          <input type="password" name="password" id="pass" minlength="6" required />
+        </div>
+        <div>
+          <button>Login</button>
+        </div>
+      </form>
+    </section>
+    <section class="navigation">
+      <nav class="nav-bar">
+        <button>My Reservations</button>
+        <button>Book a Room</button>
+      </nav>
+      <div>
+        <p>Welcome Home Logan</p>
+        <p>User Id#:</p>
+      </div>
+    </section>
+    <section class="reservations">
+      <button>Past Reservations</button>
+      <button>Upcoming Reservations</button>
+      <section class="rooms">
+        <!-- room cards populate here -->
+      </section>
+    </section>
+    <section class="booking">
+      <!-- date range form etc...  -->
+    </section>
+  </main>
+
+
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
 </body>
+
 </html>
