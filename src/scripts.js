@@ -9,7 +9,7 @@ import "./images/turing-logo.png";
 console.log("This is the JavaScript entry file - your code begins here.");
 
 // ===== IMPORTS ======
-import { getUserData } from "./apiCalls";
+import { getUserData, getCustomerBookings } from "./apiCalls";
 
 // ===== QUERY SELECTORS =====
 const form = document.querySelector(".login-form");
@@ -29,6 +29,9 @@ form.addEventListener("submit", function (event) {
   getUserData(userId).then((user) => {
     currentUser = user;
     console.log(currentUser);
+    getCustomerBookings(currentUser.id).then((bookings) =>
+      console.log(bookings)
+    );
   });
 
   // get the numbers out of the submission
