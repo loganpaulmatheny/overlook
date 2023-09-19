@@ -8,8 +8,12 @@ import "./css/styles.css";
 import "./images/turing-logo.png";
 console.log("This is the JavaScript entry file - your code begins here.");
 
+// ===== IMPORTS ======
+import { getUserData } from "./apiCalls";
+
 // ===== QUERY SELECTORS =====
 const form = document.querySelector(".login-form");
+const usernameInput = document.querySelector("#username");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -20,6 +24,13 @@ var userTotalCosts;
 // ===== EVENT LISTENERS =====
 form.addEventListener("submit", function (event) {
   event.preventDefault();
+  let user = usernameInput.value;
+  let userId = user.match(/\d+/)[0];
+  getUserData(userId).then((user) => {
+    currentUser = user;
+    console.log(currentUser);
+  });
+
   // get the numbers out of the submission
   // apiCall for the individual customer
   // thenable that sets currentUser here
@@ -27,5 +38,5 @@ form.addEventListener("submit", function (event) {
   // thenable for
   // creating the user's rooms
   // calculate the costs
-  console.log("test");
+  console.log(userId);
 });
