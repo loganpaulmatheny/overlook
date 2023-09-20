@@ -13,15 +13,33 @@ import { getRooms, getUserData, getCustomerBookings } from "./apiCalls";
 import { calculateRoomCosts } from "./customer";
 import {
   createBookings,
+  updateWelcomeUser,
   updateTotalCost,
   updateSecondaryCosts,
+  displayElements,
 } from "./domUpdates";
 
 // ===== QUERY SELECTORS =====
+const navigationArea = document.querySelector(".navigation");
+const navBar = document.querySelector(".nav-bar");
+const loginArea = document.querySelector(".login-area");
 const form = document.querySelector(".login-form");
 const usernameInput = document.querySelector("#username");
-const pastCosts = document.querySelector(".past-costs-amount");
-const upcomingCosts = document.querySelector(".upcoming-costs-amount");
+const customerInformation = document.querySelector(".customer-information");
+const pastReservationsButton = document.querySelector(".past-reservations");
+const upcomingReservationsButton = document.querySelector(
+  ".upcoming-reservations"
+);
+const reservationCosts = document.querySelector(".reservation-costs");
+const pastCosts = document.querySelector(".past-costs");
+const pastCostsAmount = document.querySelector(".past-costs-amount");
+const upcomingCosts = document.querySelector(".upcoming-costs");
+const bookingsArea = document.querySelector(".bookings-area");
+const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
+const makeReservationButton = document.querySelector(
+  ".make-reservation-button"
+);
+const makeReservationsArea = document.querySelector(".make-reservations-area");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -37,6 +55,10 @@ window.addEventListener("load", function (event) {
     rooms = data.rooms;
     // console.log(rooms);
   });
+  displayElements(
+    [loginArea],
+    [navBar, customerInformation, bookingsArea, makeReservationsArea]
+  );
 });
 
 form.addEventListener("submit", function (event) {
@@ -57,11 +79,17 @@ form.addEventListener("submit", function (event) {
         );
         userTotalCosts = userPastCosts + userUpcomingCosts;
         // console.log(userTotalCosts);
+        updateWelcomeUser(currentUser);
         updateTotalCost(userTotalCosts);
-        updateSecondaryCosts(userPastCosts, pastCosts);
+        updateSecondaryCosts(userPastCosts, pastCostsAmount);
+        updateSecondaryCosts(userUpcomingCosts, upcomingCostsAmount);
         createBookings(bookings.pastBookings, rooms);
         // i need to build the bookings
         // finally call the display function
+        displayElements(
+          [navBar, pastCosts, customerInformation, bookingsArea],
+          [loginArea, upcomingCosts, makeReservationsArea]
+        );
       }
       // update the total costs
       // create the bookings on the DOM
@@ -77,6 +105,37 @@ form.addEventListener("submit", function (event) {
   // creating the user's rooms
   // calculate the costs
   console.log(userId);
+});
+
+pastReservationsButton.addEventListener("click", function (event) {
+  console.log("past bookings");
+  console.log(currentUserBookings.pastBookings);
+  createBookings(currentUserBookings.pastBookings, rooms);
+  // i need to build the bookings
+  // finally call the display function
+  displayElements(
+    [navBar, pastCosts, customerInformation, bookingsArea],
+    [loginArea, upcomingCosts, makeReservationsArea]
+  );
+});
+
+upcomingReservationsButton.addEventListener("click", function (event) {
+  console.log("upcoming bookings");
+  console.log(currentUserBookings.upcomingBookings);
+  createBookings(currentUserBookings.upcomingBookings, rooms);
+  // i need to build the bookings
+  // finally call the display function
+  displayElements(
+    [navBar, upcomingCosts, customerInformation, bookingsArea],
+    [loginArea, pastCosts, makeReservationsArea]
+  );
+});
+
+makeReservationButton.addEventListener("click", function (event) {
+  displayElements(
+    [navigationArea, makeReservationsArea],
+    [loginArea, customerInformation]
+  );
 });
 
 export { rooms };

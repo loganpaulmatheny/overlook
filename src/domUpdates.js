@@ -1,8 +1,10 @@
 const bookingsArea = document.querySelector(".bookings-area");
+const welcomeMessage = document.querySelector(".welcome");
+const userIdMessage = document.querySelector(".userIdMessage");
 const costArea = document.querySelector(".total-cost");
 
 const createBookings = (bookings, rooms) => {
-  rooms.innerHTML = "";
+  bookingsArea.innerHTML = "";
   bookings.forEach((booking) => {
     let roomInformation = rooms.find((room) => {
       return room.number === booking.roomNumber;
@@ -15,6 +17,11 @@ const createBookings = (bookings, rooms) => {
   });
 };
 
+const updateWelcomeUser = (user) => {
+  welcomeMessage.innerHTML = `Welcome home ${user.name}`;
+  userIdMessage.innerHTML = `User ID: ${user.id}`;
+};
+
 const updateTotalCost = (total) => {
   costArea.innerHTML = "";
   costArea.innerHTML = `Total Cost to date: $${total}`;
@@ -24,12 +31,24 @@ const updateSecondaryCosts = (subTotal, element) => {
   element.innerHTML = `$${subTotal}`;
 };
 
-// "bookings": [
-//   {
-//     "id": "5fwrgu4i7k55hl6sz",
-//     "userID": 9,
-//     "date": "2022/04/22",
-//     "roomNumber": 15
-//   },
+const displayElements = (toDisplays, noDisplays) => {
+  toDisplays.forEach((element) => {
+    // console.log(element);
+    element.classList.toggle("hidden", false);
+  });
+  noDisplays.forEach((element) => {
+    // console.log(element);
+    element.classList.toggle("hidden", true);
+  });
+};
 
-export { createBookings, updateTotalCost, updateSecondaryCosts };
+// -display function
+// -event listeners, functions, display for past vs. upcoming bookings
+
+export {
+  createBookings,
+  updateWelcomeUser,
+  updateTotalCost,
+  updateSecondaryCosts,
+  displayElements,
+};

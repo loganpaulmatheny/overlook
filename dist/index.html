@@ -10,6 +10,17 @@
 
 <body>
   <main class="container">
+    <section class="navigation">
+      <nav class="nav-bar">
+        <button>My Reservations</button>
+        <button class="make-reservation-button">Book a Room</button>
+      </nav>
+      <div>
+        <p class="welcome">Welcome Home</p>
+        <p class="userIdMessage"></p>
+        <p class="total-cost"></p>
+      </div>
+    </section>
     <section id="loginArea" class="login-area">
       <form action="" class="login-form">
         <div>
@@ -26,21 +37,10 @@
         </div>
       </form>
     </section>
-    <section class="navigation">
-      <nav class="nav-bar">
-        <button>My Reservations</button>
-        <button>Book a Room</button>
-      </nav>
-      <div>
-        <p>Welcome Home Logan</p>
-        <p>User Id#:</p>
-        <p class="total-cost">Total Cost</p>
-      </div>
-    </section>
     <section class="customer-information">
       <section class="reversation-views">
-        <button>Past Reservations</button>
-        <button>Upcoming Reservations</button>
+        <button class="past-reservations">Past Reservations</button>
+        <button class="upcoming-reservations">Upcoming Reservations</button>
       </section>
       <section class="reservation-costs">
         <div class="past-costs">
@@ -56,8 +56,24 @@
         <!-- room cards will populate here -->
       </section>
     </section>
-    <section class="reservations-area">
-      <!-- date range form etc...  -->
+    <section class="make-reservations-area">
+      <form action="" class="reservation-form">
+        <div>
+          <label for="reservation-date">Reservation Date: </label>
+          <input type="date" name="reservation-date" id="reservationDate" />
+        </div>
+      </form>
+      <H2 class="available-rooms-header">Available Rooms</H2>
+      <section class="room-type-tags-area">
+        <div id="all">All Types</div>
+        <div id="residential_suite">Residential Suite</div>
+        <div id="suite">Suite</div>
+        <div id="single_room">Single Room</div>
+        <div id="junior_suite">Junior Suite</div>
+      </section>
+      <section class="available-rooms">
+        <!-- available room cards here -->
+      </section>
     </section>
   </main>
 
