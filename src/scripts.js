@@ -8,12 +8,16 @@ import "./css/styles.css";
 import "./images/turing-logo.png";
 console.log("This is the JavaScript entry file - your code begins here.");
 
+// ===== NPM PACKAGE =====
+import { format } from "date-fns";
+
 // ===== IMPORTS ======
 import {
   getRooms,
   getUserData,
   getCustomerBookings,
   availableBookings,
+  bookRoom,
 } from "./apiCalls";
 import {
   createBookings,
@@ -24,7 +28,7 @@ import {
   createAvailableRooms,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
-import { getAvailableBookings } from "./reservations";
+import { filterAvailableRooms } from "./reservations";
 
 // ===== QUERY SELECTORS =====
 const navigationArea = document.querySelector(".navigation");
@@ -49,6 +53,8 @@ const makeReservationButton = document.querySelector(
 const makeReservationsArea = document.querySelector(".make-reservations-area");
 const dateForm = document.querySelector(".date-selection-form");
 const reservationDateInput = document.querySelector("#reservationDate");
+const roomTagFilters = document.querySelector(".room-tag-filters");
+const availableRoomsArea = document.querySelector(".available-rooms");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -73,6 +79,21 @@ window.addEventListener("load", function (event) {
   );
 });
 
+const updateCustomerInformation = (bookings, rooms, currentUser) => {
+  // console.log(bookings)
+  currentUserBookings = bookings;
+  userPastCosts = calculateRoomCosts(bookings.pastBookings, rooms);
+  userUpcomingCosts = calculateRoomCosts(bookings.upcomingBookings, rooms);
+  userTotalCosts = userPastCosts + userUpcomingCosts;
+  // console.log(userTotalCosts);
+  updateWelcomeUser(currentUser);
+  updateTotalCost(userTotalCosts);
+  updateSecondaryCosts(userPastCosts, pastCostsAmount);
+  updateSecondaryCosts(userUpcomingCosts, upcomingCostsAmount);
+  createBookings(bookings.pastBookings, rooms);
+  // i need to build the bookings
+};
+
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = usernameInput.value;
@@ -82,21 +103,7 @@ loginForm.addEventListener("submit", function (event) {
     // console.log(currentUser);
     getCustomerBookings(currentUser.id).then(
       (bookings) => {
-        // console.log(bookings)
-        currentUserBookings = bookings;
-        userPastCosts = calculateRoomCosts(bookings.pastBookings, rooms);
-        userUpcomingCosts = calculateRoomCosts(
-          bookings.upcomingBookings,
-          rooms
-        );
-        userTotalCosts = userPastCosts + userUpcomingCosts;
-        // console.log(userTotalCosts);
-        updateWelcomeUser(currentUser);
-        updateTotalCost(userTotalCosts);
-        updateSecondaryCosts(userPastCosts, pastCostsAmount);
-        updateSecondaryCosts(userUpcomingCosts, upcomingCostsAmount);
-        createBookings(bookings.pastBookings, rooms);
-        // i need to build the bookings
+        updateCustomerInformation(bookings, rooms, currentUser);
         // finally call the display function
         displayElements(
           [navBar, pastCosts, customerInformation, bookingsArea],
@@ -162,6 +169,40 @@ dateForm.addEventListener("submit", function (event) {
     roomTypeFilter = "all";
     availableRooms = availableBookings;
     createAvailableRooms(availableRooms);
+  });
+});
+
+roomTagFilters.addEventListener("click", function (event) {
+  let tagId = event.target.id;
+  // console.log(tagId);
+  let filteredRooms = filterAvailableRooms(tagId, availableRooms);
+  createAvailableRooms(filteredRooms);
+});
+
+availableRoomsArea.addEventListener("click", function (event) {
+  let roomClicked = event.target.parentElement.id;
+  roomClicked = parseInt(roomClicked);
+  let date = format(reservationDate, "yyyy/MM/dd");
+  // console.log(typeof date);
+  // console.log(typeof currentUser.id);
+  // console.log(typeof roomClicked);
+  // use of npm-formatter to parse the date in the form needed for the POST
+  bookRoom(currentUser.id, date, roomClicked).then(() => {
+    getCustomerBookings(currentUser.id).then(
+      (bookings) => {
+        console.log("getting here");
+        updateCustomerInformation(bookings, rooms, currentUser);
+        createBookings(currentUserBookings.upcomingBookings, rooms);
+        // finally call the display function
+        displayElements(
+          [navBar, upcomingCosts, customerInformation, bookingsArea],
+          [loginArea, pastCosts, makeReservationsArea]
+        );
+      }
+      // update the total costs
+      // create the bookings on the DOM
+      // display the bookings
+    );
   });
 });
 

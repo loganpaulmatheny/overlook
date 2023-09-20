@@ -1,3 +1,5 @@
+import { rooms } from "./scripts";
+
 const getAvailableBookings = (date, rooms, bookings) => {
   let bookingsThatDay = bookings.reduce((acc, cv) => {
     let bookingDate = new Date(cv.date);
@@ -20,4 +22,16 @@ const getAvailableBookings = (date, rooms, bookings) => {
 // -create function that filters all the bookings for a given day
 // -then compare the total list of rooms with that filtered list of bookings between their ids -- if there's no id match create the appropriate booking object and stick it in an array
 // -make this available rooms global
-export { getAvailableBookings };
+
+const filterAvailableRooms = (tagId, rooms) => {
+  return rooms.filter((room) => {
+    let roomType = room.roomType.split(" ").join("")
+    if (tagId === "all") {
+      return room;
+    } else if (tagId === roomType) {
+      return room
+    }
+  });
+};
+
+export { getAvailableBookings, filterAvailableRooms };
