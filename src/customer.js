@@ -28,6 +28,33 @@ const sortBookings = (bookings) => {
   });
 };
 
+const calculateRoomCosts = (typeOfBookings, rooms) => {
+  let roomCosts = rooms.reduce((acc, cv) => {
+    acc[cv.number] = cv.costPerNight;
+    return acc;
+  }, {});
+
+  let costOfBookings = typeOfBookings.reduce((acc, cv) => {
+    acc += roomCosts[cv.roomNumber];
+    return acc;
+  }, 0);
+
+  return Math.round(costOfBookings * 100) / 100;
+};
+
+// const positionPoints = (playerObject) => {
+//   const playerKeys = Object.keys(oldSchoolBasketballPlayers)
+//     return playerKeys.reduce((acc, cv) => {
+//       if (!acc[playerObject[cv].position]) {
+//       acc[playerObject[cv].position] = playerObject[cv].careerPoints;
+//       }
+//       else {
+//         acc[playerObject[cv].position] += playerObject[cv].careerPoints;
+//       }
+//       return acc
+//     }, {})
+//   }
+
 // if needed to mainupate todays date.toJSON().slice(0, 10);
 
-export { getUserBookings };
+export { getUserBookings, calculateRoomCosts };

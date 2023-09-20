@@ -9,7 +9,8 @@ import "./images/turing-logo.png";
 console.log("This is the JavaScript entry file - your code begins here.");
 
 // ===== IMPORTS ======
-import { getUserData, getCustomerBookings } from "./apiCalls";
+import { getRooms, getUserData, getCustomerBookings } from "./apiCalls";
+import { calculateRoomCosts } from "./customer";
 
 // ===== QUERY SELECTORS =====
 const form = document.querySelector(".login-form");
@@ -20,17 +21,37 @@ var currentUser;
 var userPastCosts;
 var userUpcomingCosts;
 var userTotalCosts;
+var rooms;
 
 // ===== EVENT LISTENERS =====
+window.addEventListener("load", function (event) {
+  getRooms().then((data) => {
+    rooms = data.rooms;
+    // console.log(rooms);
+  });
+});
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = usernameInput.value;
   let userId = user.match(/\d+/)[0];
   getUserData(userId).then((user) => {
     currentUser = user;
-    console.log(currentUser);
-    getCustomerBookings(currentUser.id).then((bookings) =>
-      console.log(bookings)
+    // console.log(currentUser);
+    getCustomerBookings(currentUser.id).then(
+      (bookings) => {
+        // console.log(bookings)
+        userPastCosts = calculateRoomCosts(bookings.pastBookings, rooms);
+        userUpcomingCosts = calculateRoomCosts(
+          bookings.upcomingBookings,
+          rooms
+        );
+        userTotalCosts = userPastCosts + userUpcomingCosts;
+        console.log(userTotalCosts);
+      }
+      // update the total costs
+      // create the bookings on the DOM
+      // display the bookings
     );
   });
 
