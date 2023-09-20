@@ -9,8 +9,12 @@ import "./images/turing-logo.png";
 console.log("This is the JavaScript entry file - your code begins here.");
 
 // ===== IMPORTS ======
-import { getRooms, getUserData, getCustomerBookings } from "./apiCalls";
-import { calculateRoomCosts } from "./customer";
+import {
+  getRooms,
+  getUserData,
+  getCustomerBookings,
+  availableBookings,
+} from "./apiCalls";
 import {
   createBookings,
   updateWelcomeUser,
@@ -18,12 +22,14 @@ import {
   updateSecondaryCosts,
   displayElements,
 } from "./domUpdates";
+import { calculateRoomCosts } from "./customer";
+import { getAvailableBookings } from "./reservations";
 
 // ===== QUERY SELECTORS =====
 const navigationArea = document.querySelector(".navigation");
 const navBar = document.querySelector(".nav-bar");
 const loginArea = document.querySelector(".login-area");
-const form = document.querySelector(".login-form");
+const loginForm = document.querySelector(".login-form");
 const usernameInput = document.querySelector("#username");
 const customerInformation = document.querySelector(".customer-information");
 const pastReservationsButton = document.querySelector(".past-reservations");
@@ -40,6 +46,8 @@ const makeReservationButton = document.querySelector(
   ".make-reservation-button"
 );
 const makeReservationsArea = document.querySelector(".make-reservations-area");
+const dateForm = document.querySelector(".date-selection-form");
+const reservationDateInput = document.querySelector("#reservationDate");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -48,6 +56,7 @@ var userPastCosts;
 var userUpcomingCosts;
 var userTotalCosts;
 var rooms;
+var reservationDate;
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function (event) {
@@ -61,7 +70,7 @@ window.addEventListener("load", function (event) {
   );
 });
 
-form.addEventListener("submit", function (event) {
+loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = usernameInput.value;
   let userId = user.match(/\d+/)[0];
@@ -107,6 +116,8 @@ form.addEventListener("submit", function (event) {
   console.log(userId);
 });
 
+// ====== PUT EVENT LISTENER FOR MY RESERVATIONS WITH BASICALLY THE SAME CODE AS ABOVE HERE =====
+
 pastReservationsButton.addEventListener("click", function (event) {
   console.log("past bookings");
   console.log(currentUserBookings.pastBookings);
@@ -136,6 +147,16 @@ makeReservationButton.addEventListener("click", function (event) {
     [navigationArea, makeReservationsArea],
     [loginArea, customerInformation]
   );
+});
+
+dateForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let date = reservationDateInput.value;
+  reservationDate = new Date(date);
+  reservationDate.setHours(reservationDate.getHours() + 4);
+  availableBookings(reservationDate, rooms).then((availableBookings) => {
+    console.log(availableBookings);
+  });
 });
 
 export { rooms };

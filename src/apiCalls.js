@@ -1,4 +1,5 @@
 import { getUserBookings } from "./customer";
+import { getAvailableBookings } from "./reservations";
 
 const getRooms = () => {
   return fetch(`http://localhost:3001/api/v1/rooms`)
@@ -44,4 +45,23 @@ const getCustomerBookings = (userId) => {
     });
 };
 
-export { getUserData, getCustomerBookings, getRooms };
+const availableBookings = (date, rooms) => {
+  return fetch(`http://localhost:3001/api/v1/bookings`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Get network response was not ok: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      let bookings = data.bookings;
+      let availableBookings = getAvailableBookings(date, rooms, bookings);
+      // insert function here that creates the available bookings array
+      return availableBookings;
+    })
+    .catch((error) => {
+      console.error(`Error fetching customer bookings info: ${error}`);
+    });
+};
+
+export { getUserData, getCustomerBookings, getRooms, availableBookings };
