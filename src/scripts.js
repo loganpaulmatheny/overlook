@@ -11,11 +11,17 @@ console.log("This is the JavaScript entry file - your code begins here.");
 // ===== IMPORTS ======
 import { getRooms, getUserData, getCustomerBookings } from "./apiCalls";
 import { calculateRoomCosts } from "./customer";
-import { createBookings, updateTotalCost } from "./domUpdates";
+import {
+  createBookings,
+  updateTotalCost,
+  updateSecondaryCosts,
+} from "./domUpdates";
 
 // ===== QUERY SELECTORS =====
 const form = document.querySelector(".login-form");
 const usernameInput = document.querySelector("#username");
+const pastCosts = document.querySelector(".past-costs-amount");
+const upcomingCosts = document.querySelector(".upcoming-costs-amount");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -52,6 +58,7 @@ form.addEventListener("submit", function (event) {
         userTotalCosts = userPastCosts + userUpcomingCosts;
         // console.log(userTotalCosts);
         updateTotalCost(userTotalCosts);
+        updateSecondaryCosts(userPastCosts, pastCosts);
         createBookings(bookings.pastBookings, rooms);
         // i need to build the bookings
         // finally call the display function
