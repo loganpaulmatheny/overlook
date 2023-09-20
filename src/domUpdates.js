@@ -1,8 +1,10 @@
 const bookingsArea = document.querySelector(".bookings-area");
+const welcomeMessage = document.querySelector(".welcome");
+const userIdMessage = document.querySelector(".userIdMessage");
 const costArea = document.querySelector(".total-cost");
 
 const createBookings = (bookings, rooms) => {
-  rooms.innerHTML = "";
+  bookingsArea.innerHTML = "";
   bookings.forEach((booking) => {
     let roomInformation = rooms.find((room) => {
       return room.number === booking.roomNumber;
@@ -13,6 +15,11 @@ const createBookings = (bookings, rooms) => {
       <p>Cost per Night: $${roomInformation.costPerNight}</p>
     `;
   });
+};
+
+const updateWelcomeUser = (user) => {
+  welcomeMessage.innerHTML = `Welcome home ${user.name}`;
+  userIdMessage.innerHTML = `User ID: ${user.id}`;
 };
 
 const updateTotalCost = (total) => {
@@ -40,6 +47,7 @@ const displayElements = (toDisplays, noDisplays) => {
 
 export {
   createBookings,
+  updateWelcomeUser,
   updateTotalCost,
   updateSecondaryCosts,
   displayElements,
