@@ -13,7 +13,7 @@
     <section class="navigation">
       <nav class="nav-bar">
         <button>My Reservations</button>
-        <button>Book a Room</button>
+        <button class="make-reservation-button">Book a Room</button>
       </nav>
       <div>
         <p class="welcome">Welcome Home</p>
@@ -57,7 +57,23 @@
       </section>
     </section>
     <section class="make-reservations-area">
-      <!-- date range form etc...  -->
+      <form action="" class="reservation-form">
+        <div>
+          <label for="reservation-date">Reservation Date: </label>
+          <input type="date" name="reservation-date" id="reservationDate" />
+        </div>
+      </form>
+      <H2 class="available-rooms-header">Available Rooms</H2>
+      <section class="room-type-tags-area">
+        <div id="all">All Types</div>
+        <div id="residential_suite">Residential Suite</div>
+        <div id="suite">Suite</div>
+        <div id="single_room">Single Room</div>
+        <div id="junior_suite">Junior Suite</div>
+      </section>
+      <section class="available-rooms">
+        <!-- available room cards here -->
+      </section>
     </section>
   </main>
 

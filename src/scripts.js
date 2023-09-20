@@ -36,6 +36,9 @@ const pastCostsAmount = document.querySelector(".past-costs-amount");
 const upcomingCosts = document.querySelector(".upcoming-costs");
 const bookingsArea = document.querySelector(".bookings-area");
 const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
+const makeReservationButton = document.querySelector(
+  ".make-reservation-button"
+);
 const makeReservationsArea = document.querySelector(".make-reservations-area");
 
 // ===== GLOBAL VARIABLES =====
@@ -125,6 +128,13 @@ upcomingReservationsButton.addEventListener("click", function (event) {
   displayElements(
     [navBar, upcomingCosts, customerInformation, bookingsArea],
     [loginArea, pastCosts, makeReservationsArea]
+  );
+});
+
+makeReservationButton.addEventListener("click", function (event) {
+  displayElements(
+    [navigationArea, makeReservationsArea],
+    [loginArea, customerInformation]
   );
 });
 
