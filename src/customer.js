@@ -28,18 +28,21 @@ const sortBookings = (bookings) => {
   });
 };
 
-const calculateRoomCosts = (typeOfBookings, rooms) => {
-  let roomCosts = rooms.reduce((acc, cv) => {
+const roomCosts = (rooms) => {
+  return rooms.reduce((acc, cv) => {
     acc[cv.number] = cv.costPerNight;
     return acc;
   }, {});
+};
 
+const calculateRoomCosts = (typeOfBookings, rooms) => {
+  let roomChart = roomCosts(rooms);
   let costOfBookings = typeOfBookings.reduce((acc, cv) => {
-    acc += roomCosts[cv.roomNumber];
+    acc += roomChart[cv.roomNumber];
     return acc;
   }, 0);
 
-  return Math.round(costOfBookings * 100) / 100;
+  return Math.round(costOfBookings);
 };
 
 // const positionPoints = (playerObject) => {
@@ -57,4 +60,4 @@ const calculateRoomCosts = (typeOfBookings, rooms) => {
 
 // if needed to mainupate todays date.toJSON().slice(0, 10);
 
-export { getUserBookings, calculateRoomCosts };
+export { getUserBookings, calculateRoomCosts, roomCosts };

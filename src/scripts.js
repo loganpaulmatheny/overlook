@@ -11,6 +11,7 @@ console.log("This is the JavaScript entry file - your code begins here.");
 // ===== IMPORTS ======
 import { getRooms, getUserData, getCustomerBookings } from "./apiCalls";
 import { calculateRoomCosts } from "./customer";
+import { createBookings, updateTotalCost } from "./domUpdates";
 
 // ===== QUERY SELECTORS =====
 const form = document.querySelector(".login-form");
@@ -50,6 +51,8 @@ form.addEventListener("submit", function (event) {
         );
         userTotalCosts = userPastCosts + userUpcomingCosts;
         // console.log(userTotalCosts);
+        updateTotalCost(userTotalCosts);
+        createBookings(bookings.pastBookings, rooms);
         // i need to build the bookings
         // finally call the display function
       }
@@ -68,3 +71,5 @@ form.addEventListener("submit", function (event) {
   // calculate the costs
   console.log(userId);
 });
+
+export { rooms };
