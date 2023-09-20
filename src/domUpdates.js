@@ -24,12 +24,23 @@ const updateSecondaryCosts = (subTotal, element) => {
   element.innerHTML = `$${subTotal}`;
 };
 
-// "bookings": [
-//   {
-//     "id": "5fwrgu4i7k55hl6sz",
-//     "userID": 9,
-//     "date": "2022/04/22",
-//     "roomNumber": 15
-//   },
+const displayElements = (toDisplays, noDisplays) => {
+  toDisplays.forEach((element) => {
+    // console.log(element);
+    element.classList.toggle("hidden", false);
+  });
+  noDisplays.forEach((element) => {
+    // console.log(element);
+    element.classList.toggle("hidden", true);
+  });
+};
 
-export { createBookings, updateTotalCost, updateSecondaryCosts };
+// -display function
+// -event listeners, functions, display for past vs. upcoming bookings
+
+export {
+  createBookings,
+  updateTotalCost,
+  updateSecondaryCosts,
+  displayElements,
+};

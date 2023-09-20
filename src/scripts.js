@@ -15,13 +15,22 @@ import {
   createBookings,
   updateTotalCost,
   updateSecondaryCosts,
+  displayElements,
 } from "./domUpdates";
 
 // ===== QUERY SELECTORS =====
+const loginArea = document.querySelector(".login-area");
 const form = document.querySelector(".login-form");
 const usernameInput = document.querySelector("#username");
-const pastCosts = document.querySelector(".past-costs-amount");
-const upcomingCosts = document.querySelector(".upcoming-costs-amount");
+const navigationArea = document.querySelector(".navigation");
+const customerInformation = document.querySelector(".customer-information");
+const reservationCosts = document.querySelector(".reservation-costs");
+const pastCosts = document.querySelector(".past-costs");
+const pastCostsAmount = document.querySelector(".past-costs-amount");
+const upcomingCosts = document.querySelector(".upcoming-costs");
+const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
+const bookingsArea = document.querySelector(".bookings-area");
+const makeReservationsArea = document.querySelector(".make-reservations-area");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -58,10 +67,14 @@ form.addEventListener("submit", function (event) {
         userTotalCosts = userPastCosts + userUpcomingCosts;
         // console.log(userTotalCosts);
         updateTotalCost(userTotalCosts);
-        updateSecondaryCosts(userPastCosts, pastCosts);
+        updateSecondaryCosts(userPastCosts, pastCostsAmount);
         createBookings(bookings.pastBookings, rooms);
         // i need to build the bookings
         // finally call the display function
+        displayElements(
+          [navigationArea, pastCosts, bookingsArea],
+          [loginArea, upcomingCosts, makeReservationsArea]
+        );
       }
       // update the total costs
       // create the bookings on the DOM
