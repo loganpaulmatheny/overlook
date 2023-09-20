@@ -17,8 +17,9 @@
           <input name="username" id="username" value="enter username" />
         </div>
         <div>
-          <label for="pass">Username: </label>
-          <input type="password" name="password" id="pass" minlength="6" required />
+          <label for="pass">Password: </label>
+          <input type="password" name="password" id="pass" />
+          <!-- minlength="6" required -->
         </div>
         <div>
           <button>Login</button>
@@ -33,16 +34,29 @@
       <div>
         <p>Welcome Home Logan</p>
         <p>User Id#:</p>
+        <p class="total-cost">Total Cost</p>
       </div>
     </section>
-    <section class="reservations">
-      <button>Past Reservations</button>
-      <button>Upcoming Reservations</button>
-      <section class="rooms">
+    <section class="customer-information">
+      <section class="reversation-views">
+        <button>Past Reservations</button>
+        <button>Upcoming Reservations</button>
+      </section>
+      <section class="reservation-costs">
+        <div class="past-costs">
+          <h2>Past Costs</h2>
+          <p class="past-costs-amount"></p>
+        </div>
+        <div class="upcoming-costs">
+          <h2>Upcoming Costs</h2>
+          <p class="upcoming-costs-amount"></p>
+        </div>
+      </section>
+      <section class="bookings-area">
         <!-- room cards will populate here -->
       </section>
     </section>
-    <section class="booking">
+    <section class="reservations-area">
       <!-- date range form etc...  -->
     </section>
   </main>
