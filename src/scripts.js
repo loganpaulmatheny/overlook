@@ -8,6 +8,9 @@ import "./css/styles.css";
 import "./images/turing-logo.png";
 console.log("This is the JavaScript entry file - your code begins here.");
 
+// ===== NPM PACKAGE =====
+import { format } from "date-fns";
+
 // ===== IMPORTS ======
 import {
   getRooms,
@@ -24,7 +27,7 @@ import {
   createAvailableRooms,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
-import { getAvailableBookings } from "./reservations";
+import { filterAvailableRooms } from "./reservations";
 
 // ===== QUERY SELECTORS =====
 const navigationArea = document.querySelector(".navigation");
@@ -49,6 +52,8 @@ const makeReservationButton = document.querySelector(
 const makeReservationsArea = document.querySelector(".make-reservations-area");
 const dateForm = document.querySelector(".date-selection-form");
 const reservationDateInput = document.querySelector("#reservationDate");
+const roomTagFilters = document.querySelector(".room-tag-filters");
+const availableRoomsArea = document.querySelector(".available-rooms");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -163,6 +168,19 @@ dateForm.addEventListener("submit", function (event) {
     availableRooms = availableBookings;
     createAvailableRooms(availableRooms);
   });
+});
+
+roomTagFilters.addEventListener("click", function (event) {
+  let tagId = event.target.id;
+  // console.log(tagId);
+  let filteredRooms = filterAvailableRooms(tagId, availableRooms);
+  createAvailableRooms(filteredRooms);
+});
+
+availableRoomsArea.addEventListener("click", function (event) {
+  let roomClicked = event.target.parentElement.id;
+  let date = format(reservationDate, "yyyy-MM-dd");
+  // use of npm-formatter to parse the date in the form needed for the POST 
 });
 
 export { rooms };

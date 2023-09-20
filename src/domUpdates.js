@@ -22,8 +22,12 @@ const createAvailableRooms = (availableRooms) => {
   availableRoomsArea.innerHTML = "";
   availableRooms.forEach((availableRoom) => {
     availableRoomsArea.innerHTML += `
-    <h2>${availableRoom.roomType}</h2>
-    <p>${availableRoom.costPerNight}</p>
+    <div id="${availableRoom.number}"> 
+      <h2>Room Type: ${availableRoom.roomType}</h2>
+      <p>Room Number: ${availableRoom.number}</p>
+      <p>Beds: ${availableRoom.numBeds} x ${availableRoom.bedSize}</p>
+      <p>Cost per Night: $${availableRoom.costPerNight}</p>
+    </div>
     `;
   });
 };
