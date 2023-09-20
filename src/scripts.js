@@ -18,6 +18,7 @@ const usernameInput = document.querySelector("#username");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
+var currentUserBookings;
 var userPastCosts;
 var userUpcomingCosts;
 var userTotalCosts;
@@ -41,13 +42,16 @@ form.addEventListener("submit", function (event) {
     getCustomerBookings(currentUser.id).then(
       (bookings) => {
         // console.log(bookings)
+        currentUserBookings = bookings;
         userPastCosts = calculateRoomCosts(bookings.pastBookings, rooms);
         userUpcomingCosts = calculateRoomCosts(
           bookings.upcomingBookings,
           rooms
         );
         userTotalCosts = userPastCosts + userUpcomingCosts;
-        console.log(userTotalCosts);
+        // console.log(userTotalCosts);
+        // i need to build the bookings
+        // finally call the display function
       }
       // update the total costs
       // create the bookings on the DOM
