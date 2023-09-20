@@ -64,14 +64,14 @@ const availableBookings = (date, rooms) => {
     });
 };
 
-const bookRoom = (date, room, userId) => {
+const bookRoom = (id, day, roomNum) => {
   const root = `http://localhost:3001/api/v1/bookings`;
-  const recipeBody = { userID: userId, date: date, roomNumber };
-
+  const reservationBody = { userID: id, date: day, roomNumber: roomNum };
+  console.log(reservationBody);
   // Make the POST request
   return fetch(root, {
     method: "POST",
-    body: JSON.stringify(recipeBody),
+    body: JSON.stringify(reservationBody),
     headers: {
       "Content-Type": "application/json",
     },
@@ -82,24 +82,31 @@ const bookRoom = (date, room, userId) => {
           `POST network response was not ok: ${postResponse.status}`
         );
       }
+      console.log(postResponse);
 
       // Wait for the POST request to complete, then make the GET request
-      return fetch(`http://localhost:3001/api/v1/users`);
+      return fetch(`http://localhost:3001/api/v1/bookings`);
     })
-    .then((getUsersResponse) => {
-      if (!getUsersResponse.ok) {
+    .then((updatedBookingsResponse) => {
+      if (!updatedBookingsResponse.ok) {
         throw new Error(
-          `GET network response was not ok: ${getUsersResponse.status}`
+          `GET network response was not ok: ${updatedBookingsResponse.status}`
         );
       }
 
       // Parse and return the updated users data
 
-      return getUsersResponse.json();
+      return updatedBookingsResponse.json();
     })
     .catch((error) => {
       console.error(`Error: ${error}`);
     });
 };
 
-export { getUserData, getCustomerBookings, getRooms, availableBookings };
+export {
+  getUserData,
+  getCustomerBookings,
+  getRooms,
+  availableBookings,
+  bookRoom,
+};
