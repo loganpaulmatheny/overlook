@@ -21,6 +21,7 @@ import {
   updateTotalCost,
   updateSecondaryCosts,
   displayElements,
+  createAvailableRooms,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
 import { getAvailableBookings } from "./reservations";
@@ -57,6 +58,8 @@ var userUpcomingCosts;
 var userTotalCosts;
 var rooms;
 var reservationDate;
+var availableRooms;
+var roomTypeFilter;
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function (event) {
@@ -154,8 +157,11 @@ dateForm.addEventListener("submit", function (event) {
   let date = reservationDateInput.value;
   reservationDate = new Date(date);
   reservationDate.setHours(reservationDate.getHours() + 4);
+  console.log(reservationDate);
   availableBookings(reservationDate, rooms).then((availableBookings) => {
-    console.log(availableBookings);
+    roomTypeFilter = "all";
+    availableRooms = availableBookings;
+    createAvailableRooms(availableRooms);
   });
 });
 
