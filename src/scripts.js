@@ -33,6 +33,7 @@ import { filterAvailableRooms, getAvailableBookings } from "./reservations";
 // ===== QUERY SELECTORS =====
 const navigationArea = document.querySelector(".navigation");
 const navBar = document.querySelector(".nav-bar");
+const totalCostHeader = document.querySelector(".total-cost");
 const loginArea = document.querySelector(".login-area");
 const loginForm = document.querySelector(".login-form");
 const usernameInput = document.querySelector("#username");
@@ -55,6 +56,7 @@ const dateForm = document.querySelector(".date-selection-form");
 const reservationDateInput = document.querySelector("#reservationDate");
 const roomTagFilters = document.querySelector(".room-tag-filters");
 const availableRoomsArea = document.querySelector(".available-rooms");
+const viewReservations = document.querySelector(".view-my-reservations");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -63,6 +65,7 @@ var userPastCosts;
 var userUpcomingCosts;
 var userTotalCosts;
 var rooms;
+// stores the rooms types from initial request 
 var reservationDate;
 var availableRooms;
 var roomTypeFilter;
@@ -72,7 +75,6 @@ var bookingsAll;
 window.addEventListener("load", function (event) {
   getRooms().then((data) => {
     rooms = data.rooms;
-    // console.log(rooms);
   });
   displayElements(
     [loginArea],
@@ -81,7 +83,6 @@ window.addEventListener("load", function (event) {
 });
 
 const updateCustomerInformation = (customerBookings, rooms, currentUser) => {
-  // console.log(bookings)
   currentUserBookings = customerBookings;
   userPastCosts = calculateRoomCosts(customerBookings.pastBookings, rooms);
   userUpcomingCosts = calculateRoomCosts(
@@ -159,7 +160,7 @@ upcomingReservationsButton.addEventListener("click", function (event) {
 makeReservationButton.addEventListener("click", function (event) {
   displayElements(
     [navigationArea, makeReservationsArea],
-    [loginArea, customerInformation]
+    [loginArea, customerInformation, totalCostHeader]
   );
 });
 
@@ -204,6 +205,22 @@ availableRoomsArea.addEventListener("click", function (event) {
       [loginArea, customerInformation]
     );
   });
+});
+
+viewReservations.addEventListener("click", function (event) {
+  getCustomerBookings(currentUser.id).then(
+    (customerBookings) => {
+      updateCustomerInformation(customerBookings, rooms, currentUser);
+      // finally call the display function
+      displayElements(
+        [navBar, totalCostHeader, pastCosts, customerInformation, bookingsArea],
+        [loginArea, upcomingCosts, makeReservationsArea]
+      );
+    }
+    // update the total costs
+    // create the bookings on the DOM
+    // display the bookings
+  );
 });
 
 // event listener on my rooms
