@@ -3,6 +3,8 @@ const welcomeMessage = document.querySelector(".welcome");
 const userIdMessage = document.querySelector(".userIdMessage");
 const costArea = document.querySelector(".total-cost");
 const availableRoomsArea = document.querySelector(".available-rooms");
+const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
+const pastCostsAmount = document.querySelector(".past-costs-amount");
 
 const createBookings = (bookings, rooms) => {
   bookingsArea.innerHTML = "";
@@ -52,19 +54,21 @@ const updateSecondaryCosts = (subTotal, element) => {
   element.innerHTML = `$${subTotal}`;
 };
 
+const updateUserElements = (currentUser, totalCost, pastCost, upcomingCost) => {
+  updateWelcomeUser(currentUser);
+  updateTotalCost(totalCost);
+  updateSecondaryCosts(pastCost, pastCostsAmount);
+  updateSecondaryCosts(upcomingCost, upcomingCostsAmount);
+};
+
 const displayElements = (toDisplays, noDisplays) => {
   toDisplays.forEach((element) => {
-    // console.log(element);
     element.classList.toggle("hidden", false);
   });
   noDisplays.forEach((element) => {
-    // console.log(element);
     element.classList.toggle("hidden", true);
   });
 };
-
-// -display function
-// -event listeners, functions, display for past vs. upcoming bookings
 
 export {
   createBookings,
@@ -72,5 +76,6 @@ export {
   updateWelcomeUser,
   updateTotalCost,
   updateSecondaryCosts,
+  updateUserElements,
   displayElements,
 };

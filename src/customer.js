@@ -45,19 +45,5 @@ const calculateRoomCosts = (typeOfBookings, rooms) => {
   return Math.round(costOfBookings);
 };
 
-// const positionPoints = (playerObject) => {
-//   const playerKeys = Object.keys(oldSchoolBasketballPlayers)
-//     return playerKeys.reduce((acc, cv) => {
-//       if (!acc[playerObject[cv].position]) {
-//       acc[playerObject[cv].position] = playerObject[cv].careerPoints;
-//       }
-//       else {
-//         acc[playerObject[cv].position] += playerObject[cv].careerPoints;
-//       }
-//       return acc
-//     }, {})
-//   }
-
-// if needed to mainupate todays date.toJSON().slice(0, 10);
 
 export { getUserBookings, calculateRoomCosts, roomCosts };
