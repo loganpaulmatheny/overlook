@@ -9,12 +9,14 @@ const getAvailableBookings = (date, rooms, bookings) => {
     }
     return acc;
   }, []);
+
   let roomsAvailable = rooms.reduce((acc, cv) => {
     if (!bookingsThatDay.includes(cv.number)) {
       acc.push(cv);
     }
     return acc;
   }, []);
+
   return roomsAvailable;
 };
 
@@ -25,11 +27,11 @@ const getAvailableBookings = (date, rooms, bookings) => {
 
 const filterAvailableRooms = (tagId, rooms) => {
   return rooms.filter((room) => {
-    let roomType = room.roomType.split(" ").join("")
+    let roomType = room.roomType.split(" ").join("");
     if (tagId === "all") {
       return room;
     } else if (tagId === roomType) {
-      return room
+      return room;
     }
   });
 };
