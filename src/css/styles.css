@@ -1,10 +1,60 @@
 * {
   border: solid green 1px;
+  margin: 0;
+}
+
+html {
+  font-family: 'Electrolux Sans', sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+.container {
+display: flex;
+flex-direction: column;
+}
+
+.navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.user-data {
+  width: 25%; 
+}
+
+.welcome {
+  font-size: 20px;
+}
+
+.icon {
+  height: 25px;
+  width: 25px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 15px;
+  padding-left: 15px;
+  margin-right:50%;
+  margin-bottom: 15px;
+}
+
+.spacer {
+  height: 20px;
+  width: 50%;
 }
 
 body {
 
 }
+
+
 
 .hidden {
   display: none;

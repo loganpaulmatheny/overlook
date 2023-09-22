@@ -41,7 +41,7 @@ const createAvailableRooms = (availableRooms) => {
 };
 
 const updateWelcomeUser = (user) => {
-  welcomeMessage.innerHTML = `Welcome home ${user.name}`;
+  welcomeMessage.innerHTML = `Welcome home, ${user.name}`;
   userIdMessage.innerHTML = `User ID: ${user.id}`;
 };
 
