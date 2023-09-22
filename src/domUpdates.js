@@ -13,9 +13,11 @@ const createBookings = (bookings, rooms) => {
       return room.number === booking.roomNumber;
     });
     bookingsArea.innerHTML += `
-      <h2>${roomInformation.roomType}</h2>
-      <p>Date: ${booking.date}</P>
-      <p>Cost per Night: $${roomInformation.costPerNight}</p>
+      <div class="user-booking">
+        <h2>${roomInformation.roomType}</h2>
+        <p>Date: ${booking.date}</P>
+        <p>Price: $${roomInformation.costPerNight}</p>
+      </div>
     `;
   });
 };

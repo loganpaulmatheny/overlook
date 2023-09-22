@@ -5,19 +5,19 @@
   margin: 0px;
   padding: 0px;
   font-family: 'Electrolux Sans', sans-serif;
-  border: solid white 1px;
+  /* border: solid white 1px; */
 }
 body {
   height: 100vh;
   margin: 0;
   background-image: url(/dist/images/home.jpg);
   background-size: cover;
+  scroll-behavior: smooth;
 }
 
 html {
   font-family: 'Electrolux Sans', sans-serif;
   height: 100%;
-  overflow: hidden;
   color: white;
 }
 
@@ -56,7 +56,9 @@ flex-direction: column;
   border-radius: 3px;
   font-size: smaller;
   border: 0px;
-  color: white
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .welcome-logo {
@@ -64,6 +66,7 @@ flex-direction: column;
 }
 
 .icon {
+  margin-right: 5px;
   height: 35px;
   width: 35px;
 }
@@ -86,6 +89,7 @@ flex-direction: column;
   padding-left: 15px;
   margin-bottom: 15px;
   width: 80%;
+  height: auto;
 }
 
 .spacer {
@@ -100,6 +104,10 @@ button {
   cursor: pointer;
   transition: 200ms;
   border: 0px;
+}
+
+.login-area{
+  margin-top: 7%;
 }
 
 .login-form {
@@ -120,6 +128,8 @@ button {
 .customer-information {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .reservation-views {
@@ -127,6 +137,22 @@ button {
   flex-direction: row;
   justify-content: center;
 }
+
+.bookings-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 600px;
+  overflow-y: auto;
+  width: 90%;
+}
+
+.user-booking {
+  width: 200px;
+  height: 200px;
+}
+
 .hidden {
   display: none;
 }
