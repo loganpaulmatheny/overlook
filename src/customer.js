@@ -2,11 +2,13 @@ const getUserBookings = (userId, bookings) => {
   let currentDate = new Date();
   let userBookings = bookings.reduce(
     (acc, cv) => {
-      let bookingDate = new Date(cv.date);
-      if (bookingDate < currentDate) {
-        acc.pastBookings.push(cv);
-      } else {
-        acc.upcomingBookings.push(cv);
+      if (cv.userID === userId) {
+        let bookingDate = new Date(cv.date);
+        if (bookingDate < currentDate) {
+          acc.pastBookings.push(cv);
+        } else {
+          acc.upcomingBookings.push(cv);
+        }
       }
       return acc;
     },
@@ -26,6 +28,7 @@ const sortBookings = (bookings) => {
     });
     bookings[typeOfBooking] = sortedBookings;
   });
+  return bookings;
 };
 
 const roomCosts = (rooms) => {
@@ -35,9 +38,9 @@ const roomCosts = (rooms) => {
   }, {});
 };
 
-const calculateRoomCosts = (typeOfBookings, rooms) => {
+const calculateRoomCosts = (bookings, rooms) => {
   let roomChart = roomCosts(rooms);
-  let costOfBookings = typeOfBookings.reduce((acc, cv) => {
+  let costOfBookings = bookings.reduce((acc, cv) => {
     acc += roomChart[cv.roomNumber];
     return acc;
   }, 0);
@@ -45,5 +48,4 @@ const calculateRoomCosts = (typeOfBookings, rooms) => {
   return Math.round(costOfBookings);
 };
 
-
-export { getUserBookings, calculateRoomCosts, roomCosts };
+export { getUserBookings, calculateRoomCosts, roomCosts, sortBookings };
