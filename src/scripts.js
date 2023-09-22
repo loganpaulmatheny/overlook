@@ -31,6 +31,7 @@ const pastReservationsButton = document.querySelector(".past-reservations");
 const upcomingReservationsButton = document.querySelector(
   ".upcoming-reservations"
 );
+const userData = document.querySelector(".user-data");
 const reservationCosts = document.querySelector(".reservation-costs");
 const pastCosts = document.querySelector(".past-costs");
 const upcomingCosts = document.querySelector(".upcoming-costs");
@@ -44,6 +45,8 @@ const reservationDateInput = document.querySelector("#reservationDate");
 const roomTagFilters = document.querySelector(".room-tag-filters");
 const availableRoomsArea = document.querySelector(".available-rooms");
 const viewReservations = document.querySelector(".view-my-reservations");
+const body = document.body;
+const logoBox = document.querySelector(".logo-box");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -96,8 +99,10 @@ loginForm.addEventListener("submit", function (event) {
     currentUser = user;
     getCustomerBookings(currentUser.id).then((customerBookings) => {
       updateCustomerInformation(customerBookings, rooms, currentUser);
+      body.classList.add("app-background");
+      logoBox.classList.add("changed");
       displayElements(
-        [navBar, pastCosts, customerInformation, bookingsArea],
+        [navBar, pastCosts, customerInformation, bookingsArea, userData],
         [loginArea, upcomingCosts, makeReservationsArea]
       );
     });

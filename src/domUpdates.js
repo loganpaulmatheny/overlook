@@ -13,9 +13,11 @@ const createBookings = (bookings, rooms) => {
       return room.number === booking.roomNumber;
     });
     bookingsArea.innerHTML += `
-      <h2>${roomInformation.roomType}</h2>
-      <p>Date: ${booking.date}</P>
-      <p>Cost per Night: $${roomInformation.costPerNight}</p>
+      <div class="user-booking">
+        <h2>${roomInformation.roomType}</h2>
+        <p>Date: ${booking.date}</P>
+        <p>Price: $${roomInformation.costPerNight}</p>
+      </div>
     `;
   });
 };
@@ -41,7 +43,7 @@ const createAvailableRooms = (availableRooms) => {
 };
 
 const updateWelcomeUser = (user) => {
-  welcomeMessage.innerHTML = `Welcome home ${user.name}`;
+  welcomeMessage.innerHTML = `Welcome home, ${user.name}`;
   userIdMessage.innerHTML = `User ID: ${user.id}`;
 };
 

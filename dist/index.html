@@ -5,27 +5,36 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <title>Overlook</title>
 </head>
 
 <body>
   <main class="container">
-    <section class="navigation">
-      <nav class="nav-bar">
-        <button class="view-my-reservations">My Reservations</button>
-        <button class="make-reservation-button">Book a Room</button>
-      </nav>
-      <div>
-        <p class="welcome">Welcome Home</p>
+    <div class="logo-box">
+      <div class="logo">
+        <img class="icon" src="./images/hotel.png" alt=" Hotel Key Icon">
+        <h1 class="welcome-logo">Welcome Home</h1>
+      </div>
+      <section class="user-data hidden">
+        <p class="welcome"></p>
         <p class="userIdMessage"></p>
         <p class="total-cost"></p>
-      </div>
+      </section>
+    </div>
+    <section class="navigation">
+      <nav class="nav-bar">
+        <button class="nav-button view-my-reservations">My Reservations</button>
+        <button class="nav-button make-reservation-button">Book a Room</button>
+      </nav>
     </section>
     <section id="loginArea" class="login-area">
       <form action="" class="login-form">
         <div>
           <label for="username">Username: </label>
-          <input name="username" id="username" value="enter username" />
+          <input name="username" id="username" value="Enter username" />
         </div>
         <div>
           <label for="pass">Password: </label>
@@ -33,12 +42,12 @@
           <!-- minlength="6" required -->
         </div>
         <div>
-          <button>Login</button>
+          <button class="login-button">Login</button>
         </div>
       </form>
     </section>
     <section class="customer-information">
-      <section class="reversation-views">
+      <section class="reservation-views">
         <button class="past-reservations">Past Reservations</button>
         <button class="upcoming-reservations">Upcoming Reservations</button>
       </section>
