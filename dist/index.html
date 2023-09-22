@@ -13,20 +13,22 @@
 
 <body>
   <main class="container">
-    <div class="logo">
-      <img class="icon" src="./images/hotel.png" alt=" Hotel Key Icon">
-      <h1 class="welcome">Welcome Home</h1>
-    </div>
-    <section class="navigation">
-      <nav class="nav-bar">
-        <button class="view-my-reservations">My Reservations</button>
-        <button class="make-reservation-button">Book a Room</button>
-      </nav>
-      <div class="spacer"></div>
-      <section class="user-data">
+    <div class="logo-box">
+      <div class="logo">
+        <img class="icon" src="./images/hotel.png" alt=" Hotel Key Icon">
+        <h1 class="welcome-logo">Welcome Home</h1>
+      </div>
+      <section class="user-data hidden">
+        <p class="welcome"></p>
         <p class="userIdMessage"></p>
         <p class="total-cost"></p>
       </section>
+    </div>
+    <section class="navigation">
+      <nav class="nav-bar">
+        <button class="nav-button view-my-reservations">My Reservations</button>
+        <button class="nav-button make-reservation-button">Book a Room</button>
+      </nav>
     </section>
     <section id="loginArea" class="login-area">
       <form action="" class="login-form">
@@ -40,12 +42,12 @@
           <!-- minlength="6" required -->
         </div>
         <div>
-          <button>Login</button>
+          <button class="login-button">Login</button>
         </div>
       </form>
     </section>
     <section class="customer-information">
-      <section class="reversation-views">
+      <section class="reservation-views">
         <button class="past-reservations">Past Reservations</button>
         <button class="upcoming-reservations">Upcoming Reservations</button>
       </section>
