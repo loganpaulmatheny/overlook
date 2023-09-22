@@ -47,6 +47,7 @@ const availableRoomsArea = document.querySelector(".available-rooms");
 const viewReservations = document.querySelector(".view-my-reservations");
 const body = document.body;
 const logoBox = document.querySelector(".logo-box");
+const hotelInformation = document.querySelector(".hotel-information");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -95,17 +96,15 @@ loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = usernameInput.value;
   let userId = user.match(/\d+/)[0];
+  body.classList.add("app-background");
+  logoBox.classList.add("changed");
+
+  displayElements(
+    [navBar, userData, hotelInformation],
+    [loginArea, upcomingCosts, makeReservationsArea]
+  );
   getUserData(userId).then((user) => {
     currentUser = user;
-    getCustomerBookings(currentUser.id).then((customerBookings) => {
-      updateCustomerInformation(customerBookings, rooms, currentUser);
-      body.classList.add("app-background");
-      logoBox.classList.add("changed");
-      displayElements(
-        [navBar, pastCosts, customerInformation, bookingsArea, userData],
-        [loginArea, upcomingCosts, makeReservationsArea]
-      );
-    });
   });
 });
 
@@ -188,8 +187,8 @@ viewReservations.addEventListener("click", function (event) {
   getCustomerBookings(currentUser.id).then((customerBookings) => {
     updateCustomerInformation(customerBookings, rooms, currentUser);
     displayElements(
-      [navBar, totalCostHeader, pastCosts, customerInformation, bookingsArea],
-      [loginArea, upcomingCosts, makeReservationsArea]
+      [navBar, pastCosts, customerInformation, bookingsArea, userData],
+      [loginArea, upcomingCosts, makeReservationsArea, hotelInformation]
     );
   });
 });

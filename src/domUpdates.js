@@ -14,7 +14,7 @@ const createBookings = (bookings, rooms) => {
     });
     bookingsArea.innerHTML += `
       <div class="user-booking">
-        <h2>${roomInformation.roomType}</h2>
+        <h2 class="user-room">${roomInformation.roomType}</h2>
         <p>Date: ${booking.date}</P>
         <p>Price: $${roomInformation.costPerNight}</p>
       </div>
