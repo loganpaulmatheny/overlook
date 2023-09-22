@@ -11,8 +11,12 @@ import {
   userFourteenBookingsMixedUp,
   availableRoomsResult,
   allRoomsBooked,
+  filterSuitesResult,
 } from "../data/sample-data";
-import { getAvailableBookings } from "../src/reservations";
+import {
+  filterAvailableRooms,
+  getAvailableBookings,
+} from "../src/reservations";
 const {
   calculateRoomCosts,
   roomCosts,
@@ -112,5 +116,19 @@ describe("Get available bookings", function () {
     );
 
     expect(availableBookings).to.deep.equal([]);
+  });
+});
+
+describe("Filter bookings by roomType", function () {
+  it("Should filter the bookings by roomtype", function () {
+    let filteredRooms = filterAvailableRooms("suite", availableRoomsResult);
+
+    expect(filteredRooms).to.deep.equal(filterSuitesResult);
+  });
+
+  it("If there are no rooms matching the filter it should return an empty array", function () {
+    let filteredRooms = filterAvailableRooms("suite", []);
+
+    expect(filteredRooms).to.deep.equal([]);
   });
 });
