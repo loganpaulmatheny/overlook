@@ -8,15 +8,17 @@ import {
   roomCostObjectResult,
   currentSampleUser,
   userFourteenBookings,
+  userFourteenBookingsMixedUp,
 } from "../data/sample-data";
 const {
   calculateRoomCosts,
   roomCosts,
   getUserBookings,
+  sortBookings,
 } = require("../src/customer.js");
 
 describe("Room costs", function () {
-  it("Should create an single object with the room number as a property and it's value being the cost per night.", function () {
+  it("Should create a single object with the room numbers properties and their values being the cost per night.", function () {
     const roomCostObject = roomCosts(sampleRoomData.rooms);
     expect(roomCostObject).to.deep.equal(roomCostObjectResult);
   });
@@ -51,5 +53,29 @@ describe("User bookings", function () {
     );
 
     expect(userBookings).to.deep.equal(userFourteenBookings);
+  });
+
+  it("Should return an obect with blank arrays if no bookings are found", function () {
+    let currentUser = {
+      id: 7,
+      name: "Logan Bond",
+    };
+    const userBookings = getUserBookings(
+      currentUser.id,
+      sampleBookingsData.bookings
+    );
+
+    expect(userBookings).to.deep.equal({
+      pastBookings: [],
+      upcomingBookings: [],
+    });
+  });
+});
+
+describe("Sort bookings", function () {
+  it("Should sort the bookings from oldest to newest", function () {
+    let sortedBookings = sortBookings(userFourteenBookingsMixedUp);
+
+    expect(sortedBookings).to.deep.equal(userFourteenBookings);
   });
 });
