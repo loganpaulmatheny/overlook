@@ -29,8 +29,8 @@ const createAvailableRooms = (availableRooms) => {
   } else {
     availableRooms.forEach((availableRoom) => {
       availableRoomsArea.innerHTML += `
-      <div id="${availableRoom.number}"> 
-        <h2>Room Type: ${availableRoom.roomType}</h2>
+      <div id="${availableRoom.number}" > 
+        <h2 tabindex="0">Room Type: ${availableRoom.roomType}</h2>
         <p>Room Number: ${availableRoom.number}</p>
         <p>Beds: ${availableRoom.numBeds} x ${availableRoom.bedSize}</p>
         <p>Cost per Night: $${availableRoom.costPerNight}</p>

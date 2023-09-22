@@ -1,5 +1,3 @@
-import { rooms } from "./scripts";
-
 const getAvailableBookings = (date, rooms, bookings) => {
   let bookingsThatDay = bookings.reduce((acc, cv) => {
     let bookingDate = new Date(cv.date);

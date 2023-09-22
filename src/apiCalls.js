@@ -56,7 +56,6 @@ const availableBookings = (date, rooms) => {
     .then((data) => {
       let bookings = data.bookings;
       let availableBookings = getAvailableBookings(date, rooms, bookings);
-      // insert function here that creates the available bookings array
       return availableBookings;
     })
     .catch((error) => {
@@ -67,8 +66,6 @@ const availableBookings = (date, rooms) => {
 const bookRoom = (id, day, roomNum) => {
   const root = `http://localhost:3001/api/v1/bookings`;
   const reservationBody = { userID: id, date: day, roomNumber: roomNum };
-  console.log(reservationBody);
-  // Make the POST request
   return fetch(root, {
     method: "POST",
     body: JSON.stringify(reservationBody),
@@ -84,7 +81,6 @@ const bookRoom = (id, day, roomNum) => {
       }
       console.log(postResponse);
 
-      // Wait for the POST request to complete, then make the GET request
       return fetch(`http://localhost:3001/api/v1/bookings`);
     })
     .then((updatedBookingsResponse) => {
@@ -93,8 +89,6 @@ const bookRoom = (id, day, roomNum) => {
           `GET network response was not ok: ${updatedBookingsResponse.status}`
         );
       }
-
-      // Parse and return the updated users data
 
       return updatedBookingsResponse.json();
     })

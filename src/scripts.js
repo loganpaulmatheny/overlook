@@ -86,6 +86,8 @@ const updateCustomerInformation = (customerBookings, rooms, currentUser) => {
   createBookings(customerBookings.pastBookings, rooms);
 };
 
+// This function needs to be in the scripts file because it is updating global variables, along with other dom manipulations
+
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = usernameInput.value;
@@ -101,8 +103,6 @@ loginForm.addEventListener("submit", function (event) {
     });
   });
 });
-
-// ====== PUT EVENT LISTENER FOR MY RESERVATIONS WITH BASICALLY THE SAME CODE AS ABOVE HERE =====
 
 pastReservationsButton.addEventListener("click", function (event) {
   createBookings(currentUserBookings.pastBookings, rooms);
@@ -132,7 +132,8 @@ dateForm.addEventListener("submit", function (event) {
   let date = reservationDateInput.value;
   reservationDate = new Date(date);
   reservationDate.setHours(reservationDate.getHours() + 4);
-  // Fix the date so it can be compared to the resrvations
+  console;
+  // Fixes the date so it can be compared to the resrvations
   availableBookings(reservationDate, rooms).then((availableBookings) => {
     roomTypeFilter = "all";
     availableRooms = availableBookings;
@@ -143,17 +144,28 @@ dateForm.addEventListener("submit", function (event) {
 roomTagFilters.addEventListener("click", function (event) {
   let tagId = event.target.id;
   let filteredRooms = filterAvailableRooms(tagId, availableRooms);
+  console.log(filteredRooms);
   createAvailableRooms(filteredRooms);
 });
 
 availableRoomsArea.addEventListener("click", function (event) {
+  handleBookRoom(event);
+});
+
+availableRoomsArea.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    handleBookRoom(event);
+  }
+});
+
+function handleBookRoom(event) {
   let roomClicked = event.target.parentElement.id;
   roomClicked = parseInt(roomClicked);
   let date = format(reservationDate, "yyyy/MM/dd");
-  // use of npm-formatter to parse the date in the form needed for the POST
+  // Use of npm-formatter to parse the date in the form needed for the POST
   bookRoom(currentUser.id, date, roomClicked).then((updatedBookings) => {
-    reservationDate = new Date(date); 
-    // parse the reservation date that was converted for the POST back into a date format that can be used for looking up available rooms
+    reservationDate = new Date(date);
+    // Parses the reservation date that was converted for the POST back into a date format that can be used for looking up available rooms
     availableRooms = getAvailableBookings(
       reservationDate,
       rooms,
@@ -165,18 +177,14 @@ availableRoomsArea.addEventListener("click", function (event) {
       [loginArea, customerInformation]
     );
   });
-});
+}
 
 viewReservations.addEventListener("click", function (event) {
-  getCustomerBookings(currentUser.id).then(
-    (customerBookings) => {
-      updateCustomerInformation(customerBookings, rooms, currentUser);
-      displayElements(
-        [navBar, totalCostHeader, pastCosts, customerInformation, bookingsArea],
-        [loginArea, upcomingCosts, makeReservationsArea]
-      );
-    }
-  );
+  getCustomerBookings(currentUser.id).then((customerBookings) => {
+    updateCustomerInformation(customerBookings, rooms, currentUser);
+    displayElements(
+      [navBar, totalCostHeader, pastCosts, customerInformation, bookingsArea],
+      [loginArea, upcomingCosts, makeReservationsArea]
+    );
+  });
 });
-
-export { rooms };
