@@ -16,15 +16,19 @@ import {
   displayElements,
   createAvailableRooms,
   checkLogin,
+  updateWelcomeUser,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
 import { filterAvailableRooms, getAvailableBookings } from "./reservations";
 
 // ===== QUERY SELECTORS =====
-// FORMATTING
+// NOT REQUIRED
 const body = document.body;
 const logoBox = document.querySelector(".logo-box");
 const hotelInformation = document.querySelector(".hotel-information");
+const hotelInformationButton = document.querySelector(
+  ".hotel-information-button"
+);
 
 // LOGIN
 const loginArea = document.querySelector(".login-area");
@@ -116,15 +120,25 @@ loginForm.addEventListener("submit", function (event) {
     let userId = user.match(/\d+/)[0];
     body.classList.add("app-background");
     logoBox.classList.add("changed");
-
     displayElements(
-      [navBar, userData, hotelInformation],
+      [navBar, hotelInformation, userData],
       [loginArea, upcomingCosts, makeReservationsArea]
     );
     getUserData(userId).then((user) => {
       currentUser = user;
+      updateWelcomeUser(currentUser);
     });
   }
+});
+
+viewReservations.addEventListener("click", function (event) {
+  getCustomerBookings(currentUser.id).then((customerBookings) => {
+    updateCustomerInformation(customerBookings, rooms, currentUser);
+    displayElements(
+      [navBar, pastCosts, customerInformation, bookingsArea, userData],
+      [loginArea, upcomingCosts, makeReservationsArea, hotelInformation]
+    );
+  });
 });
 
 pastReservationsButton.addEventListener("click", function (event) {
@@ -146,7 +160,7 @@ upcomingReservationsButton.addEventListener("click", function (event) {
 makeReservationButton.addEventListener("click", function (event) {
   displayElements(
     [navigationArea, makeReservationsArea],
-    [loginArea, customerInformation, totalCostHeader]
+    [loginArea, customerInformation, hotelInformation]
   );
 });
 
@@ -202,12 +216,9 @@ function handleBookRoom(event) {
   });
 }
 
-viewReservations.addEventListener("click", function (event) {
-  getCustomerBookings(currentUser.id).then((customerBookings) => {
-    updateCustomerInformation(customerBookings, rooms, currentUser);
-    displayElements(
-      [navBar, pastCosts, customerInformation, bookingsArea, userData],
-      [loginArea, upcomingCosts, makeReservationsArea, hotelInformation]
-    );
-  });
+hotelInformationButton.addEventListener("click", function () {
+  displayElements(
+    [navigationArea, hotelInformation],
+    [loginArea, customerInformation, makeReservationsArea]
+  );
 });
