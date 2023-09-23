@@ -5,6 +5,7 @@ const costArea = document.querySelector(".total-cost");
 const availableRoomsArea = document.querySelector(".available-rooms");
 const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
 const pastCostsAmount = document.querySelector(".past-costs-amount");
+const loginError = document.querySelector(".login-error");
 
 const createBookings = (bookings, rooms) => {
   bookingsArea.innerHTML = "";
@@ -14,7 +15,7 @@ const createBookings = (bookings, rooms) => {
     });
     bookingsArea.innerHTML += `
       <div class="user-booking">
-        <h2>${roomInformation.roomType}</h2>
+        <h2 class="user-room">${roomInformation.roomType}</h2>
         <p>Date: ${booking.date}</P>
         <p>Price: $${roomInformation.costPerNight}</p>
       </div>
@@ -72,6 +73,46 @@ const displayElements = (toDisplays, noDisplays) => {
   });
 };
 
+const checkUsername = (usernameInput) => {
+  const customerFormat = /^customer([1-9]|[1-4]\d|50)$/;
+  let status;
+  if (customerFormat.test(usernameInput)) {
+    status = true;
+  } else {
+    status = false;
+  }
+  return status;
+};
+
+const checkPassword = (passwordInput) => {
+  let pass = "overlook2021";
+  if (passwordInput === pass || passwordInput === "overlook2023") {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const checkLogin = (user, pass) => {
+  let usernameStatus = checkUsername(user);
+  let passwordStatus = checkPassword(pass);
+  if (usernameStatus === true && passwordStatus === true) {
+    loginError.classList.toggle("hidden", true);
+    return true;
+  } else if (usernameStatus === false) {
+    loginError.classList.toggle("hidden", false);
+    loginError.innerHTML = "";
+    loginError.innerHTML +=
+      "Looks like your username might be slighly off - check it again";
+    return false;
+  } else if (passwordStatus === false) {
+    loginError.classList.toggle("hidden", false);
+    loginError.innerHTML = "";
+    loginError.innerHTML += "Incorrect password";
+    return false;
+  }
+};
+
 export {
   createBookings,
   createAvailableRooms,
@@ -80,4 +121,7 @@ export {
   updateSecondaryCosts,
   updateUserElements,
   displayElements,
+  checkUsername,
+  checkPassword,
+  checkLogin,
 };

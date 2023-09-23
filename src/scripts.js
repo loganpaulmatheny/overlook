@@ -15,38 +15,54 @@ import {
   updateUserElements,
   displayElements,
   createAvailableRooms,
+  checkLogin,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
 import { filterAvailableRooms, getAvailableBookings } from "./reservations";
 
 // ===== QUERY SELECTORS =====
-const navigationArea = document.querySelector(".navigation");
-const navBar = document.querySelector(".nav-bar");
-const totalCostHeader = document.querySelector(".total-cost");
+// FORMATTING
+const body = document.body;
+const logoBox = document.querySelector(".logo-box");
+const hotelInformation = document.querySelector(".hotel-information");
+
+// LOGIN
 const loginArea = document.querySelector(".login-area");
 const loginForm = document.querySelector(".login-form");
 const usernameInput = document.querySelector("#username");
-const customerInformation = document.querySelector(".customer-information");
-const pastReservationsButton = document.querySelector(".past-reservations");
-const upcomingReservationsButton = document.querySelector(
-  ".upcoming-reservations"
-);
-const userData = document.querySelector(".user-data");
-const reservationCosts = document.querySelector(".reservation-costs");
-const pastCosts = document.querySelector(".past-costs");
-const upcomingCosts = document.querySelector(".upcoming-costs");
-const bookingsArea = document.querySelector(".bookings-area");
+const passwordInput = document.querySelector("#pass");
+
+// NAVBAR
+const navigationArea = document.querySelector(".navigation");
+const navBar = document.querySelector(".nav-bar");
 const makeReservationButton = document.querySelector(
   ".make-reservation-button"
 );
+
+// USER INFO
+const userData = document.querySelector(".user-data");
+const totalCostHeader = document.querySelector(".total-cost");
+
+// CUSTOMER INFO
+const upcomingReservationsButton = document.querySelector(
+  ".upcoming-reservations"
+);
+const customerInformation = document.querySelector(".customer-information");
+const pastReservationsButton = document.querySelector(".past-reservations");
+const reservationCosts = document.querySelector(".reservation-costs");
+const pastCosts = document.querySelector(".past-costs");
+const upcomingCosts = document.querySelector(".upcoming-costs");
+
+// BOOKINGS
+const bookingsArea = document.querySelector(".bookings-area");
+
+// RESERVATIONS
 const makeReservationsArea = document.querySelector(".make-reservations-area");
 const dateForm = document.querySelector(".date-selection-form");
 const reservationDateInput = document.querySelector("#reservationDate");
 const roomTagFilters = document.querySelector(".room-tag-filters");
 const availableRoomsArea = document.querySelector(".available-rooms");
 const viewReservations = document.querySelector(".view-my-reservations");
-const body = document.body;
-const logoBox = document.querySelector(".logo-box");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -94,19 +110,21 @@ const updateCustomerInformation = (customerBookings, rooms, currentUser) => {
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let user = usernameInput.value;
-  let userId = user.match(/\d+/)[0];
-  getUserData(userId).then((user) => {
-    currentUser = user;
-    getCustomerBookings(currentUser.id).then((customerBookings) => {
-      updateCustomerInformation(customerBookings, rooms, currentUser);
-      body.classList.add("app-background");
-      logoBox.classList.add("changed");
-      displayElements(
-        [navBar, pastCosts, customerInformation, bookingsArea, userData],
-        [loginArea, upcomingCosts, makeReservationsArea]
-      );
+  let pass = passwordInput.value;
+  let formStatus = checkLogin(user, pass);
+  if (formStatus === true) {
+    let userId = user.match(/\d+/)[0];
+    body.classList.add("app-background");
+    logoBox.classList.add("changed");
+
+    displayElements(
+      [navBar, userData, hotelInformation],
+      [loginArea, upcomingCosts, makeReservationsArea]
+    );
+    getUserData(userId).then((user) => {
+      currentUser = user;
     });
-  });
+  }
 });
 
 pastReservationsButton.addEventListener("click", function (event) {
@@ -188,8 +206,8 @@ viewReservations.addEventListener("click", function (event) {
   getCustomerBookings(currentUser.id).then((customerBookings) => {
     updateCustomerInformation(customerBookings, rooms, currentUser);
     displayElements(
-      [navBar, totalCostHeader, pastCosts, customerInformation, bookingsArea],
-      [loginArea, upcomingCosts, makeReservationsArea]
+      [navBar, pastCosts, customerInformation, bookingsArea, userData],
+      [loginArea, upcomingCosts, makeReservationsArea, hotelInformation]
     );
   });
 });
