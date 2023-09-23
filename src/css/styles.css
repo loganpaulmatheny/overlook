@@ -193,6 +193,10 @@ button {
   margin-bottom: 20px;
 }
 
+.login-error {
+  color: red;
+}
+
 .hidden {
   display: none;
 }
