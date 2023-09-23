@@ -173,6 +173,7 @@ button {
 .hotel-images {
   display: flex;
   overflow: scroll;
+  scrollbar-gutter: stable both-edges;
   width: 60%;
   margin-left: 5%;
 }
