@@ -1,101 +1,64 @@
-# Webpack Starter Kit
+# What's Cookin
 
-- test connection
+## Technology Used
 
-## Clone This Repo
+<a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="40px" /></a><a href="https://www.javascript.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" height="40px" /></a>
+</br>
+<a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50" /></a>  
+<a href="https://mochajs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mocha.png" alt="Mocha" height="25" /></a>  
+<a href="https://www.chaijs.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/chai.png" alt="Chai" height="25" /></a>  
+<a href="https://webpack.js.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/webpack-original.svg" alt="Webpack" height="25" /></a>
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+## Collaborators
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+- [Mary Bruff](https://github.com/MaryBruff)
+- [Logan Matheny](https://github.com/loganpaulmatheny)
+- [Jen Nguyen](https://github.com/Jnguyen615)
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+## Abstract
+
+What's Cooking (renamed Discory Cooking) is a application that allows users to view and filter recipes by tags and search for recipe's by ingredients or name. The recipe cards that show up have the required ingredients for each recipe, the instructions on how to make it and the cost. This enables users to know what they need to make a particular recipe.
+
+## Context
+
+We were a group of three who are currently in mod 2 at Turing School of Software and Design. We had 11 days to complete 3 iterations of this project with optional extensions. It took roughly 25 hours.
+
+## Preview
+
+![Whatscookin1](https://github.com/turingschool-examples/hang-in-there-boilerplate/assets/119434450/88661d25-16db-44e5-ada4-3bdab1194e39)
+
+![what'scookin2](https://github.com/turingschool-examples/hang-in-there-boilerplate/assets/119434450/215a0c1c-1706-4df1-ab1a-aaacce2a97e6)
+
+![what'scooking3](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXlmY3Q2a2k3c2puYjVncmN5Z3Z0dTMxMXJvcm91czFmdDFzNnNwdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Oih9bV8dnqdukMiEOG/giphy.gif)
 
 ## Setup
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+- Clone down this repository to your local computer [What's Cookin Link](https://github.com/Jnguyen615/whats-cookin)
+- Navigate to
+- CD into the project directory
+- In your terminal, run npm install and then npm start
+- go to http://localhost:8080/ in your browser to view and run the application
 
-Then install the library dependencies. Run:
+## Learning Goals
 
-```bash
-npm install
-```
+- Use object and array prototype methods to perform data manipulation
+- Create a user interface that is easy to use and clearly displays information
+- Write dry, reusable code that follows SRP and trends toward function purity
+- Implement a robust testing suite using TDD
+- Make network requests to retrieve data
+- Collaborate productively and professionally as a team. Ensure all team members are heard and are contributing to the project
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+## Wins
 
-## Where to Add Your Code
+- Working collaboratively to finish the project ahead of time and with minor additional functionality added.
+- Having open communication that was reciproacted and taken into consideration
+- Prompt communication, always responding to messages in a timely manner
+- Being able to work together in a way that was productive and managable
+- Being able to work solo and handle all merge conflicts when encountered together
+- Implementing a new design for when the recipe page is printed
 
-### JavaScript
+## Challenges
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
-
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+- Create multiple filters that add additional recipes to the list without creating any duplicates
+- Implementing the API call and understanding what areas of the application to be within the promise
+- Getting the data model set up in a way where the promise.all() holds the global object with the data so it can be used throughout the files

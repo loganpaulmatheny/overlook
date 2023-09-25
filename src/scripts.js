@@ -17,6 +17,8 @@ import {
   createAvailableRooms,
   checkLogin,
   updateWelcomeUser,
+  createError,
+  showRoomBooked,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
 import { filterAvailableRooms, getAvailableBookings } from "./reservations";
@@ -67,6 +69,7 @@ const reservationDateInput = document.querySelector("#reservationDate");
 const roomTagFilters = document.querySelector(".room-tag-filters");
 const availableRoomsArea = document.querySelector(".available-rooms");
 const viewReservations = document.querySelector(".view-my-reservations");
+const dateButton = document.querySelector(".date-button");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -83,13 +86,19 @@ var roomTypeFilter;
 
 // ===== EVENT LISTENERS =====
 window.addEventListener("load", function (event) {
-  getRooms().then((data) => {
-    rooms = data.rooms;
-  });
-  displayElements(
-    [loginArea],
-    [navBar, customerInformation, bookingsArea, makeReservationsArea]
-  );
+  try {
+    getRooms()
+      .then((data) => {
+        rooms = data.rooms;
+        displayElements(
+          [loginArea],
+          [navBar, customerInformation, bookingsArea, makeReservationsArea]
+        );
+      })
+      .catch(() => createError());
+  } catch {
+    createError();
+  }
 });
 
 const updateCustomerInformation = (customerBookings, rooms, currentUser) => {
@@ -132,13 +141,17 @@ loginForm.addEventListener("submit", function (event) {
 });
 
 viewReservations.addEventListener("click", function (event) {
-  getCustomerBookings(currentUser.id).then((customerBookings) => {
-    updateCustomerInformation(customerBookings, rooms, currentUser);
-    displayElements(
-      [navBar, pastCosts, customerInformation, bookingsArea, userData],
-      [loginArea, upcomingCosts, makeReservationsArea, hotelInformation]
-    );
-  });
+  getCustomerBookings(currentUser.id)
+    .then((customerBookings) => {
+      updateCustomerInformation(customerBookings, rooms, currentUser);
+      displayElements(
+        [navBar, pastCosts, customerInformation, bookingsArea, userData],
+        [loginArea, upcomingCosts, makeReservationsArea, hotelInformation]
+      );
+    })
+    .catch(() => {
+      createError();
+    });
 });
 
 pastReservationsButton.addEventListener("click", function (event) {
@@ -164,18 +177,30 @@ makeReservationButton.addEventListener("click", function (event) {
   );
 });
 
+reservationDateInput.addEventListener("change", function () {
+  let date = reservationDateInput.value;
+  if (date !== "") {
+    dateButton.removeAttribute("disabled");
+  } else {
+    dateButton.setAttribute("disabled", "true");
+  }
+});
+
 dateForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let date = reservationDateInput.value;
   reservationDate = new Date(date);
   reservationDate.setHours(reservationDate.getHours() + 4);
-  console;
-  // Fixes the date so it can be compared to the resrvations
-  availableBookings(reservationDate, rooms).then((availableBookings) => {
-    roomTypeFilter = "all";
-    availableRooms = availableBookings;
-    createAvailableRooms(availableRooms);
-  });
+  // Fixes the date so it can be compared to the reservations
+  availableBookings(reservationDate, rooms)
+    .then((availableBookings) => {
+      roomTypeFilter = "all";
+      availableRooms = availableBookings;
+      createAvailableRooms(availableRooms);
+    })
+    .catch(() => {
+      createError();
+    });
 });
 
 roomTagFilters.addEventListener("click", function (event) {
@@ -200,20 +225,25 @@ function handleBookRoom(event) {
   roomClicked = parseInt(roomClicked);
   let date = format(reservationDate, "yyyy/MM/dd");
   // Use of npm-formatter to parse the date in the form needed for the POST
-  bookRoom(currentUser.id, date, roomClicked).then((updatedBookings) => {
-    reservationDate = new Date(date);
-    // Parses the reservation date that was converted for the POST back into a date format that can be used for looking up available rooms
-    availableRooms = getAvailableBookings(
-      reservationDate,
-      rooms,
-      updatedBookings.bookings
-    );
-    createAvailableRooms(availableRooms);
-    displayElements(
-      [navigationArea, makeReservationsArea],
-      [loginArea, customerInformation]
-    );
-  });
+  bookRoom(currentUser.id, date, roomClicked)
+    .then((updatedBookings) => {
+      reservationDate = new Date(date);
+      // Parses the reservation date that was converted for the POST back into a date format that can be used for looking up available rooms
+      availableRooms = getAvailableBookings(
+        reservationDate,
+        rooms,
+        updatedBookings.bookings
+      );
+      createAvailableRooms(availableRooms);
+      displayElements(
+        [navigationArea, makeReservationsArea],
+        [loginArea, customerInformation]
+      );
+      showRoomBooked();
+    })
+    .catch(() => {
+      createError();
+    });
 }
 
 hotelInformationButton.addEventListener("click", function () {

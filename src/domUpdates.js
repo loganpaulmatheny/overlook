@@ -6,6 +6,10 @@ const availableRoomsArea = document.querySelector(".available-rooms");
 const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
 const pastCostsAmount = document.querySelector(".past-costs-amount");
 const loginError = document.querySelector(".login-error");
+const generalError = document.querySelector(".general-error");
+const roomBooked = document.querySelector(".room-booked");
+
+import { checkUsername, checkPassword } from "./login";
 
 const createBookings = (bookings, rooms) => {
   bookingsArea.innerHTML = "";
@@ -32,11 +36,12 @@ const createAvailableRooms = (availableRooms) => {
   } else {
     availableRooms.forEach((availableRoom) => {
       availableRoomsArea.innerHTML += `
-      <div id="${availableRoom.number}" > 
+      <div class="available-rooms-card" id="${availableRoom.number}" > 
         <h2 tabindex="0">Room Type: ${availableRoom.roomType}</h2>
         <p>Room Number: ${availableRoom.number}</p>
         <p>Beds: ${availableRoom.numBeds} x ${availableRoom.bedSize}</p>
         <p>Cost per Night: $${availableRoom.costPerNight}</p>
+        <button class="tertiary-button book-button">Book Room</button>
       </div>
       `;
     });
@@ -73,26 +78,6 @@ const displayElements = (toDisplays, noDisplays) => {
   });
 };
 
-const checkUsername = (usernameInput) => {
-  const customerFormat = /^customer([1-9]|[1-4]\d|50)$/;
-  let status;
-  if (customerFormat.test(usernameInput)) {
-    status = true;
-  } else {
-    status = false;
-  }
-  return status;
-};
-
-const checkPassword = (passwordInput) => {
-  let pass = "overlook2021";
-  if (passwordInput === pass || passwordInput === "overlook2023") {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 const checkLogin = (user, pass) => {
   let usernameStatus = checkUsername(user);
   let passwordStatus = checkPassword(pass);
@@ -113,6 +98,22 @@ const checkLogin = (user, pass) => {
   }
 };
 
+const createError = (error) => {
+  generalError.classList.toggle("hidden", false);
+  generalError.innerHTML = "";
+  generalError.innerHTML += `We're sorry there's an error happening on the network`;
+  setTimeout(() => {
+    generalError.classList.toggle("hidden", true);
+  }, 2000);
+};
+
+const showRoomBooked = () => {
+  roomBooked.classList.toggle("hidden", false);
+  setTimeout(() => {
+    roomBooked.classList.toggle("hidden", true);
+  }, 1500);
+};
+
 export {
   createBookings,
   createAvailableRooms,
@@ -124,4 +125,6 @@ export {
   checkUsername,
   checkPassword,
   checkLogin,
+  createError,
+  showRoomBooked,
 };
