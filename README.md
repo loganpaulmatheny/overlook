@@ -25,7 +25,7 @@ User past and upcoming bookings
 Make new reservations
 
 ## Demo - COMING SOON
-The site can be accessed [here](url)
+The site can be accessed (UNDER CONSTRUCTION)
 
 username: customer<1 - 50>
 - choose a number 1 - 50
@@ -39,13 +39,9 @@ password: overlook2023
 - Make network requests to retrieve data
 
 ## Wins
-
-- Working collaboratively to finish the project ahead of time and with minor additional functionality added.
-- Having open communication that was reciproacted and taken into consideration
-- Prompt communication, always responding to messages in a timely manner
-- Being able to work together in a way that was productive and managable
-- Being able to work solo and handle all merge conflicts when encountered together
-- Implementing a new design for when the recipe page is printed
+- Completing the project in a timely fashion with full functionality!
+- Implementing new tools and features, like an NPM package to parse dates, disable buttons appropriately, and creating better ways to display areas within the application.
 
 ## Challenges
-- Working with date object. Some of the data such as the POST requests, required that 
+- Working with date object. Some of the data such as the POST requests, required that submissions be in a particular format of a string rather than dates.
+- Writing concise DRY code continues to be challenging at times.
