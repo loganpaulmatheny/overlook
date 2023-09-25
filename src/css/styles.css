@@ -104,6 +104,7 @@ button {
   cursor: pointer;
   transition: 200ms;
   border: 0px;
+  cursor: pointer;
 }
 
 .login-area{
@@ -121,6 +122,9 @@ button {
 
 .login-button {
   background-color: rgb(242, 172, 67);
+  text-align: center;
+  width: 85px;
+  height: 25px;
   font-size: large;
   margin-top: 10px;
 }
@@ -146,12 +150,17 @@ button {
   height: 600px;
   overflow-y: auto;
   width: 90%;
+  margin-top: 15px;
+  border: solid rgb(62,128,193) 2px;
 }
 
 .user-booking {
+  border: solid rgb(62,128,193) 2px;
   text-align: center;
   width: 200px;
   height: 200px;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 .user-room {
@@ -199,13 +208,72 @@ button {
   font-size: large;
 }
 
-.reservation-button {
+.make-reservations-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reservation-costs {
+  text-align: center;
+}
+
+.secondary-button {
   background-color: rgb(62,128,193);
+  color: white;
   width: 150px;
   height: auto;
   font-size: large;
   margin: 10px;
 }
+
+.room-tag-filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: scroll;
+  width: 300px;
+  height: auto;
+}
+
+.tertiary-button {
+  background-color: rgb(242, 172, 67);
+  color: black;
+  width: 200px;
+  height: auto;
+  font-size: medium;
+  margin: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.book-button {
+  background-color: rgb(62,128,193);
+  color: white;
+  width: 100px
+}
+
+.available-rooms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 300px;
+  overflow-y: auto;
+  width: 90%;
+  margin-top: 15px;
+  border: solid rgb(242, 172, 67) 2px;
+}
+
+.available-rooms-card {
+  border: solid rgb(242, 172, 67) 2px;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
 
 .hidden {
   display: none;

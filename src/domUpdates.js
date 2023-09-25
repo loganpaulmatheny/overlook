@@ -33,11 +33,12 @@ const createAvailableRooms = (availableRooms) => {
   } else {
     availableRooms.forEach((availableRoom) => {
       availableRoomsArea.innerHTML += `
-      <div id="${availableRoom.number}" > 
+      <div class="available-rooms-card" id="${availableRoom.number}" > 
         <h2 tabindex="0">Room Type: ${availableRoom.roomType}</h2>
         <p>Room Number: ${availableRoom.number}</p>
         <p>Beds: ${availableRoom.numBeds} x ${availableRoom.bedSize}</p>
         <p>Cost per Night: $${availableRoom.costPerNight}</p>
+        <button class="tertiary-button book-button">Book Room</button>
       </div>
       `;
     });

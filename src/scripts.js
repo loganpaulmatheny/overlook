@@ -68,6 +68,7 @@ const reservationDateInput = document.querySelector("#reservationDate");
 const roomTagFilters = document.querySelector(".room-tag-filters");
 const availableRoomsArea = document.querySelector(".available-rooms");
 const viewReservations = document.querySelector(".view-my-reservations");
+const dateButton = document.querySelector(".date-button");
 
 // ===== GLOBAL VARIABLES =====
 var currentUser;
@@ -175,13 +176,21 @@ makeReservationButton.addEventListener("click", function (event) {
   );
 });
 
+reservationDateInput.addEventListener("change", function () {
+  let date = reservationDateInput.value;
+  if (date !== "") {
+    dateButton.removeAttribute("disabled");
+  } else {
+    dateButton.setAttribute("disabled", "true");
+  }
+});
+
 dateForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let date = reservationDateInput.value;
   reservationDate = new Date(date);
   reservationDate.setHours(reservationDate.getHours() + 4);
-  console;
-  // Fixes the date so it can be compared to the resrvations
+  // Fixes the date so it can be compared to the reservations
   availableBookings(reservationDate, rooms)
     .then((availableBookings) => {
       roomTypeFilter = "all";
