@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <title>Overlook</title>
+</head>
+
+<body>
+  <main class="container">
+    <div class="logo-box">
+      <div class="logo">
+        <img class="icon" src="./images/hotel.png" alt=" Hotel Key Icon">
+        <h1 class="welcome-logo">Welcome Home</h1>
+      </div>
+      <section class="user-data hidden">
+        <p class="welcome"></p>
+        <p class="userIdMessage"></p>
+        <p class="total-cost"></p>
+      </section>
+    </div>
+    <h2 class="general-error hidden">GENERAL ERROR</h2>
+    <section class="navigation">
+      <nav class="nav-bar">
+        <button class="nav-button hotel-information-button">Hotel Information</button>
+        <button class="nav-button view-my-reservations">My Reservations</button>
+        <button class="nav-button make-reservation-button">Book a Room</button>
+      </nav>
+    </section>
+    <section id="loginArea" class="login-area">
+      <form action="" class="login-form">
+        <div class="login-error hidden"></div>
+        <div>
+          <label for="username">Username: </label>
+          <input name="username" id="username" value="Enter username" />
+        </div>
+        <div>
+          <label for="pass">Password: </label>
+          <input type="password" name="password" id="pass" />
+          <!-- minlength="6" required -->
+        </div>
+        <div>
+          <button class="login-button">Login</button>
+        </div>
+      </form>
+    </section>
+    <section class="hotel-information hidden">
+      <div class="hotel-main">
+        <div class="hotel-images ">
+          <img class="hotel-image" src="./images/bed.jpg" alt="modern comfortable hotel room">
+          <img class="hotel-image" src="./images/business.jpg" alt="conference rooms">
+          <img class="hotel-image" src="./images/check-in.jpg" alt="modern check-in counter">
+          <img class="hotel-image" src="./images/desk.jpg" alt="comfortable desk space">
+          <img class="hotel-image" src="./images/lobby.jpg" alt="very swanky lobby area">
+        </div>
+        <div class="hotel-address">
+          <div class="address-info">
+            <h2>Modern Home</h2>
+            <br>
+            <h3>Location</h3>
+            <p>16 Simple Lane</p>
+            <p>Boston, MA</p>
+            <p>02131</p>
+          </div>
+          <div class="address-info">
+            <h3>Contact Information</h3>
+            <p>modernhome.com</p>
+            <p>253-123-4567</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="customer-information">
+      <section class="reservation-views">
+        <button class="past-reservations secondary-button">Past Reservations</button>
+        <button class="upcoming-reservations secondary-button">Upcoming Reservations</button>
+      </section>
+      <section class="reservation-costs">
+        <div class="past-costs">
+          <h2>Past Costs</h2>
+          <p class="past-costs-amount"></p>
+        </div>
+        <div class="upcoming-costs">
+          <h2>Upcoming Costs</h2>
+          <p class="upcoming-costs-amount"></p>
+        </div>
+      </section>
+      <section class="bookings-area">
+        <!-- room cards will populate here -->
+      </section>
+    </section>
+    <section class="make-reservations-area">
+      <form action="" class="date-selection-form">
+        <div>
+          <label for="reservation-date">Reservation Date: </label>
+          <input type="date" name="reservation-date" id="reservationDate" required />
+        </div>
+        <button class="date-button secondary-button" disabled>Submit</button>
+      </form>
+      <H2 class="available-rooms-header">Available Rooms</H2>
+      <section class="room-tag-filters">
+        <button class="tertiary-button" id="all">All Types</button>
+        <button class="tertiary-button" id="residentialsuite">Residential Suite</button>
+        <button class="tertiary-button" id="suite">Suite</button>
+        <button class="tertiary-button" id="singleroom">Single Room</button>
+        <button class="tertiary-button" id="juniorsuite">Junior Suite</button>
+      </section>
+      <h2 class="room-booked hidden">Room successfully booked!</h2>
+      <section class="available-rooms">
+        <h2>Please select a date to book your room!</h2>
+        <!-- available room cards here -->
+      </section>
+    </section>
+  </main>
+
+
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  <script src="bundle.js"></script>
+
+</body>
+
+</html>
