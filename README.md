@@ -24,22 +24,19 @@ User past and upcoming bookings
 ![](https://github.com/loganpaulmatheny/overlook/blob/main/assets/reservations.gif)
 Make new reservations
 
-## Setup
+## Demo - COMING SOON
+The site can be accessed [here](url)
 
-- Clone down this repository to your local computer [What's Cookin Link](https://github.com/Jnguyen615/whats-cookin)
-- Navigate to
-- CD into the project directory
-- In your terminal, run npm install and then npm start
-- go to http://localhost:8080/ in your browser to view and run the application
+username: customer<1 - 50>
+- choose a number 1 - 50
+password: overlook2023
 
 ## Learning Goals
-
 - Use object and array prototype methods to perform data manipulation
-- Create a user interface that is easy to use and clearly displays information
+- Create a user interface that is easy to use and clearly displays information and that is fully accessible
 - Write dry, reusable code that follows SRP and trends toward function purity
 - Implement a robust testing suite using TDD
 - Make network requests to retrieve data
-- Collaborate productively and professionally as a team. Ensure all team members are heard and are contributing to the project
 
 ## Wins
 
@@ -51,7 +48,4 @@ Make new reservations
 - Implementing a new design for when the recipe page is printed
 
 ## Challenges
-
-- Create multiple filters that add additional recipes to the list without creating any duplicates
-- Implementing the API call and understanding what areas of the application to be within the promise
-- Getting the data model set up in a way where the promise.all() holds the global object with the data so it can be used throughout the files
+- Working with date object. Some of the data such as the POST requests, required that 
