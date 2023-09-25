@@ -199,6 +199,14 @@ button {
   font-size: large;
 }
 
+.reservation-button {
+  background-color: rgb(62,128,193);
+  width: 150px;
+  height: auto;
+  font-size: large;
+  margin: 10px;
+}
+
 .hidden {
   display: none;
 }

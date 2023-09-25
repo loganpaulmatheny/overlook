@@ -6,6 +6,7 @@ const availableRoomsArea = document.querySelector(".available-rooms");
 const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
 const pastCostsAmount = document.querySelector(".past-costs-amount");
 const loginError = document.querySelector(".login-error");
+const generalError = document.querySelector(".general-error");
 
 const createBookings = (bookings, rooms) => {
   bookingsArea.innerHTML = "";
@@ -113,6 +114,15 @@ const checkLogin = (user, pass) => {
   }
 };
 
+const createError = (error) => {
+  generalError.classList.toggle("hidden", false);
+  generalError.innerHTML = "";
+  generalError.innerHTML += `We're sorry there's an error happening on the network`;
+  setTimeout(() => {
+    generalError.classList.toggle("hidden", true);
+  }, 2000);
+};
+
 export {
   createBookings,
   createAvailableRooms,
@@ -124,4 +134,5 @@ export {
   checkUsername,
   checkPassword,
   checkLogin,
+  createError,
 };

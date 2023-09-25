@@ -11,6 +11,7 @@ const getRooms = () => {
     })
     .catch((error) => {
       console.error(`Error fetching room info: ${error}`);
+      return error;
     });
 };
 
@@ -24,6 +25,7 @@ const getUserData = (userId) => {
     })
     .catch((error) => {
       console.error(`Error fetching user info: ${error}`);
+      return error;
     });
 };
 
@@ -42,6 +44,7 @@ const getCustomerBookings = (userId) => {
     })
     .catch((error) => {
       console.error(`Error fetching customer bookings info: ${error}`);
+      return error;
     });
 };
 
@@ -59,7 +62,8 @@ const availableBookings = (date, rooms) => {
       return availableBookings;
     })
     .catch((error) => {
-      console.error(`Error fetching customer bookings info: ${error}`);
+      console.error(`Error getting available bookings: ${error}`);
+      return error;
     });
 };
 
@@ -93,7 +97,8 @@ const bookRoom = (id, day, roomNum) => {
       return updatedBookingsResponse.json();
     })
     .catch((error) => {
-      console.error(`Error: ${error}`);
+      console.error(`Error booking rooms: ${error}`);
+      return error;
     });
 };
 
