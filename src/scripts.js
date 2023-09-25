@@ -18,6 +18,7 @@ import {
   checkLogin,
   updateWelcomeUser,
   createError,
+  showRoomBooked,
 } from "./domUpdates";
 import { calculateRoomCosts } from "./customer";
 import { filterAvailableRooms, getAvailableBookings } from "./reservations";
@@ -238,6 +239,7 @@ function handleBookRoom(event) {
         [navigationArea, makeReservationsArea],
         [loginArea, customerInformation]
       );
+      showRoomBooked();
     })
     .catch(() => {
       createError();

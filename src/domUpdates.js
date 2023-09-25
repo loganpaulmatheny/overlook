@@ -7,6 +7,9 @@ const upcomingCostsAmount = document.querySelector(".upcoming-costs-amount");
 const pastCostsAmount = document.querySelector(".past-costs-amount");
 const loginError = document.querySelector(".login-error");
 const generalError = document.querySelector(".general-error");
+const roomBooked = document.querySelector(".room-booked");
+
+import { checkUsername, checkPassword } from "./login";
 
 const createBookings = (bookings, rooms) => {
   bookingsArea.innerHTML = "";
@@ -75,26 +78,6 @@ const displayElements = (toDisplays, noDisplays) => {
   });
 };
 
-const checkUsername = (usernameInput) => {
-  const customerFormat = /^customer([1-9]|[1-4]\d|50)$/;
-  let status;
-  if (customerFormat.test(usernameInput)) {
-    status = true;
-  } else {
-    status = false;
-  }
-  return status;
-};
-
-const checkPassword = (passwordInput) => {
-  let pass = "overlook2021";
-  if (passwordInput === pass || passwordInput === "overlook2023") {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 const checkLogin = (user, pass) => {
   let usernameStatus = checkUsername(user);
   let passwordStatus = checkPassword(pass);
@@ -124,6 +107,13 @@ const createError = (error) => {
   }, 2000);
 };
 
+const showRoomBooked = () => {
+  roomBooked.classList.toggle("hidden", false);
+  setTimeout(() => {
+    roomBooked.classList.toggle("hidden", true);
+  }, 1500);
+};
+
 export {
   createBookings,
   createAvailableRooms,
@@ -136,4 +126,5 @@ export {
   checkPassword,
   checkLogin,
   createError,
+  showRoomBooked,
 };
