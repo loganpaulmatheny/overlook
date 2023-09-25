@@ -14,11 +14,15 @@ Overlook is a room reservation booking application. It displays user past bookin
 - Filter available new bookings by room types
 - UI improvements to allow users to navigate the application with ease e.g. custom messages for unsuccessul login, successful bookings, etc...
 
-## Context
-
-
 ## Preview
+![](https://github.com/loganpaulmatheny/overlook/blob/main/assets/hotel-info.gif)
+Login and home page 
 
+![](https://github.com/loganpaulmatheny/overlook/blob/main/assets/user-bookings.gif)
+User past and upcoming bookings
+
+![](https://github.com/loganpaulmatheny/overlook/blob/main/assets/reservations.gif)
+Make new reservations
 
 ## Setup
 
