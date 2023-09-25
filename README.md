@@ -19,11 +19,6 @@ Overlook is a room reservation booking application. It displays user past bookin
 
 ## Preview
 
-![Whatscookin1](https://github.com/turingschool-examples/hang-in-there-boilerplate/assets/119434450/88661d25-16db-44e5-ada4-3bdab1194e39)
-
-![what'scookin2](https://github.com/turingschool-examples/hang-in-there-boilerplate/assets/119434450/215a0c1c-1706-4df1-ab1a-aaacce2a97e6)
-
-![what'scooking3](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXlmY3Q2a2k3c2puYjVncmN5Z3Z0dTMxMXJvcm91czFmdDFzNnNwdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Oih9bV8dnqdukMiEOG/giphy.gif)
 
 ## Setup
 
