@@ -5,19 +5,17 @@
 <a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="50px" /></a><a href="https://www.javascript.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" height="50px" /></a><a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50px" /></a>  
 <a href="https://mochajs.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/mocha.png" alt="Mocha" height="50px" /></a><a href="https://www.chaijs.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/chai.png" alt="Chai" height="50px" /></a><a href="https://webpack.js.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/webpack-original.svg" alt="Webpack" height="50px" /></a>
 
-## Collaborators
-
-- [Mary Bruff](https://github.com/MaryBruff)
-- [Logan Matheny](https://github.com/loganpaulmatheny)
-- [Jen Nguyen](https://github.com/Jnguyen615)
-
 ## Abstract
+Overlook is a room reservation booking application. It displays user past bookings, allows users to make room reservations, and more.
 
-What's Cooking (renamed Discory Cooking) is a application that allows users to view and filter recipes by tags and search for recipe's by ingredients or name. The recipe cards that show up have the required ingredients for each recipe, the instructions on how to make it and the cost. This enables users to know what they need to make a particular recipe.
+## Features
+- Track amount spent on past or upcoming rooms
+- Allow users to book new rooms
+- Filter available new bookings by room types
+- UI improvements to allow users to navigate the application with ease e.g. custom messages for unsuccessul login, successful bookings, etc...
 
 ## Context
 
-We were a group of three who are currently in mod 2 at Turing School of Software and Design. We had 11 days to complete 3 iterations of this project with optional extensions. It took roughly 25 hours.
 
 ## Preview
 
